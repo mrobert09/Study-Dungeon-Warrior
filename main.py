@@ -36,6 +36,12 @@ while running:
 
     #Generate Boss
 
+#Generate Mini-Map
+
+    #Create mini-map of dungeon
+
+    #Hide all of mini-map except for rooms player has explored
+
 #Start dungeon
     
     #Initialize Character (If new player)
@@ -108,13 +114,7 @@ while running:
 
 #Move Rooms
 
-    #Display options
-
-    #Take input
-
-    #Move Sprite to door
-
-    #Open door
+    #Open door animation
 
     #Transition screen (screen wipe to new room?)
 
@@ -122,33 +122,23 @@ while running:
 
     #Previously visited room
 
-        #re-center map
-        
-        #move sprite to center
-
-        #Move Rooms
+        #Update mini-map
 
     #First time room 
 
-        #move sprite 1/4 into room
-
         #If monster
+
+            #Auto move 1/4 into room
             
             #Combat
 
-            #Collect powerups
-
-            #Checkpoints
-
         #If no monster:
 
-            #Collect powerups 
-            
-            #check for checkpoint
-
-        #Update minimap
+            #Update minimap
         
-        #Move Rooms
+#IF walk over powerup
+
+#If click on checkpoint
 
 #Failure Screen
 
