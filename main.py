@@ -22,6 +22,8 @@ while running:
 
 #Generate Dungeon
     
+    #Generate starting room
+    
     #Generate Path to Boss (Series of Rooms minimum # of rooms)
 
     #Generate Side Rooms (have maximum # of rooms)
@@ -33,6 +35,14 @@ while running:
     #Generate Checkpoints (after minimum # rooms from start)
 
     #Generate Boss
+
+#Start dungeon
+    
+    #Initialize Character (If new player)
+
+    #Place Character in starting room
+
+    #Display Dungeon screen
 
 #Combat (for monsters and traps)
 
@@ -158,4 +168,20 @@ while running:
 
     #Pokemon style? Character on lower left, enemy on upper right?
 
+#Pause Screen
 
+    #Interrupt current process?
+
+    #Display options
+
+        #Quit to Main Menu
+
+        #Quit to Desktop
+
+        #Return to last Checkpoint
+
+        #Resume (Or press the same button that was used to open pause screen, usually "Esc")
+
+    #Get input
+
+    #Do the thing
