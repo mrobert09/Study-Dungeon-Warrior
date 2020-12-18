@@ -10,11 +10,13 @@ rand.seed()
 class Character():
     """This is the class that defines player characters"""
 
-    def __init__(self, hp=10, atk=1):
+    def __init__(self, hp=10, atk=1, lvl=1, exp=0):
         """this initializes the player character"""
         self.hp = hp
         self.atk = atk
         self.max_hp = hp
+        self.lvl = lvl
+        self.exp = exp
 
     def take_dmg(self, dmg):
         """takes an int amount of damage dealt to character, can take negative number for
@@ -57,8 +59,9 @@ class Dungeon():
          """
         return [[False for num_col in range(self.depth)] for num_row in range(self.depth)]
 
-    #Notation for rooms in grid [bool-is-room,row,col,left,up,right,down0/1, room-name
+    #Notation for rooms in grid [bool-is-encounter-active,row,col,left,up,right,down0/1, room-name
     def make_rooms(self, num_rooms):
+        """Generates a dungeon full of rooms, takes the number of rooms to generate"""
         pick_num = rand.randint(0,self.depth-1)
         self.start_room = (0,pick_num)
         row = 0
@@ -154,4 +157,4 @@ class Dungeon():
 
 
 
-dungeon = Dungeon(14)
+dungeon = Dungeon(20)
