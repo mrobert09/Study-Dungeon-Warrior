@@ -1,4 +1,5 @@
-from random import *
+from random import randint
+file = open('test_questions.txt', 'r')
 
 class Questions:
     """
@@ -10,20 +11,20 @@ class Questions:
         Initializes list of questions and list for storing used questions.
         """
         self._used_questions = []
-        self._questions = [
-            {'What is the atomic number for Helium?' : [2, 4, 3, 10]},
-            {'What is the term for the outermost electrons of an atom?' : ['Valence electrons', 'Shared electrons',
-                                                                           'Positive electrons', 'Covalent electrons']},
-            {'What is the most reactive nonmetal?' : ['Fluorine', 'Calcium', 'Carbon', 'Argon']},
-            {'An acid donates __.' : ['a proton', 'a neutron', 'an electron', 'clothes to Goodwill']},
-            {'Which pH indicates the most alkaline material?' : [14, 1, 7, 25]}
-        ]
+        self._questions = []
         self._answer_keys = {
             'A' : 1,
             'B' : 2,
             'C' : 3,
             'D' : 4
         }
+
+        for line in file:
+            line = line.strip()
+            storage_dict = {}
+            item_list = line.split(', ')
+            storage_dict[item_list[0]] = item_list[1:]
+            self._questions.append(storage_dict)
 
     def generate_question(self):
         """
@@ -35,7 +36,6 @@ class Questions:
 
         # generates random integer as a list index
         full_question = self._questions[randint(0, len(self._questions) - 1)]
-
 
         # returns random number from choices set. Needs to be random so correct answer isn't always A
         choice1 = choices.pop(randint(0, len(choices) - 1))
