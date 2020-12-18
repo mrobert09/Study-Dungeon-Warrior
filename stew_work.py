@@ -96,7 +96,7 @@ class Dungeon():
                 counter +=1
                 previous_room_dir=way
                 row +=1
-        self.add_rooms(num_rooms-self.depth)
+        self.add_rooms((num_rooms-self.depth))
 
     def add_rooms(self, num_rooms):
         """randomly adds rooms adjacent to existing rooms until it has added enough"""
@@ -107,6 +107,7 @@ class Dungeon():
                 if room and rand.randint(0,1):
                     if self.add_adj_room(room, counter):
                         counter += 1
+                        break
 
     def add_adj_room(self, room, counter):
         """adds a room adjacent to the room passed if it can, returns True if it can
@@ -114,13 +115,13 @@ class Dungeon():
         row = room[1]
         col = room[2]
         list_poss_rooms = []
-        if room[3] == 0 and room[2]-1 >= 0:
+        if col-1 >= 0 and not self.map[row][col-1]:
             list_poss_rooms.append(1)
-        if room[4] == 0 and room[1]+1 < self.depth:
+        if row+1 < self.depth and not self.map[row+1][col]:
             list_poss_rooms.append(2)
-        if room[5] == 0 and room[2]+1 < self.depth:
+        if col+1 < self.depth and not self.map[row][col+1]:
             list_poss_rooms.append(3)
-        if room[6] == 0 and room[1]-1 >= 0:
+        if row-1 >= 0 and not self.map[row-1][col]:
             list_poss_rooms.append(4)
         if len(list_poss_rooms) == 0:
             print("cant build from here", row, col)
@@ -131,11 +132,13 @@ class Dungeon():
             room[direction+2] = 1
             if direction % 2 == 0:
                 row = row - (direction-3)
+                print("building",row,col)
                 self.map[row][col] = [True, row, col,0,0,0,0,("Room " + str(self.depth + counter))]
                 self.map[row][col][((direction+1)%4)+3] = 1
                 return True
             else:
                 col = col + (direction - 2)
+                print('buildin',row,col)
                 self.map[row][col] = [True, row, col,0,0,0,0,("Room " + str(self.depth + counter))]
                 self.map[row][col][((direction+1)%4)+3] = 1
                 return True
