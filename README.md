@@ -8,7 +8,7 @@ Matthew Roberts,
 
 This is a repository for the 2020 Winter Hackathon hosted at Oregon State University.
 
-Steven's Change
+Working on code.
 
 This is Matt's change. Change #2.
 
