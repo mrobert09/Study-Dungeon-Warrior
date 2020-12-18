@@ -6,6 +6,7 @@ pygame.init()
 #Create Game Window (pixels x-axis, pixels y-axis)
 screen = pygame.display.set_mode((800, 600))
 
+
 #Title and Icon
 # pygame.display.set_caption("Study Dungeon Warrior")
 # icon = pygame.image.load("RoundBeaver-Logo.png")
@@ -20,18 +21,20 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    
+        print(event)
     
     screen.blit(roombackground, (0,0))
     pygame.display.update()
 
 
+
+
 ######### Outline ##########
 
 #Generate Dungeon
-    
+
     #Generate starting room
-    
+
     #Generate Path to Boss (Series of Rooms minimum # of rooms)
 
     #Generate Side Rooms (have maximum # of rooms)
@@ -51,7 +54,7 @@ while running:
     #Hide all of mini-map except for rooms player has explored
 
 #Start dungeon
-    
+
     #Initialize Character (If new player)
 
     #Place Character in starting room
@@ -68,7 +71,7 @@ while running:
 
     #Initialize instance of Monster
 
-    #Attack 
+    #Attack
 
         #Text ("The hobgoblin is attacking with 'What is the square root of 196?' How will you respond?")
 
@@ -83,7 +86,7 @@ while running:
             #Reduce character HP
 
             #Check player is alive
-                
+
                 #If not, go to failure screen
 
             #Attack
@@ -97,9 +100,9 @@ while running:
             #Check if monster hp == 0
 
                 #If yes, End of Combat
-            
+
             #Attack
-        
+
         #If Use PowerUp/Skill:
 
             #Display list of stuff to use
@@ -109,7 +112,7 @@ while running:
             #Apply Benefit
 
             #Attack
-    
+
     #End of Combat
 
         #Victory Text
@@ -117,7 +120,7 @@ while running:
         #Experience Text
 
             #Modify Player exp
-        
+
         #Transition back to dungeon
 
 #Move Rooms
@@ -132,18 +135,18 @@ while running:
 
         #Update mini-map
 
-    #First time room 
+    #First time room
 
         #If monster
 
             #Auto move 1/4 into room
-            
+
             #Combat
 
         #If no monster:
 
             #Update minimap
-        
+
 #IF walk over powerup
 
 #If click on checkpoint
