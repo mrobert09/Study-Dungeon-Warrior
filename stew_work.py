@@ -2,7 +2,7 @@
 # Date: 12/16/2020
 # Description: This is where I am writing stuff so I don't mess up main
 
-import Random as rand
+import random as rand
 
 rand.seed()
 
@@ -41,10 +41,18 @@ class Dungeon():
 
     def __init__(self, num_rooms, depth=8):
         """initializes empty dungeon"""
-        self.map = []
         self.depth = depth #distance to boss room
+        self.map = self._make_board()
+        print(self.map)
         self.make_rooms(num_rooms)
 
+    def _make_board(self):
+        """returns an A by A size list where A is the size of the game board
+         and every value is the input value given
+         """
+        return [[(num_row,num_col) for num_col in range(self.depth)] for num_row in range(self.depth)]
+
+    #This function doesn't work yet, gonna do it differently than I originally thought
     def make_rooms(self, num_rooms):
         main_route = []
         for num in range(self.depth):
@@ -56,5 +64,8 @@ class Dungeon():
             if way == 3:
                 main_route.append(['west'])
         side_rooms = num_rooms - self.depth
-        for num in range(side_rooms):
-            pick_room = rand.randint(0,len(main_route)-1)
+        counter = 0
+
+
+
+dungeon = Dungeon(14)
