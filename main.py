@@ -11,12 +11,20 @@ screen = pygame.display.set_mode((800, 600))
 # icon = pygame.image.load("RoundBeaver-Logo.png")
 # pygame.display.set_icon(icon)
 
+#RoomBackground
+roombackground = pygame.image.load('Images/BasicRoom.png')
+
 #Game Loop
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+    
+    
+    screen.blit(roombackground, (0,0))
+    pygame.display.update()
+
 
 ######### Outline ##########
 
