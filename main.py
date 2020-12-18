@@ -80,158 +80,160 @@ while running:
 
 ######### Outline ##########
 
-# Generate Dungeon
+######### Outline ##########
 
-# Generate starting room
+#Generate Dungeon
+    
+    #Generate starting room
+    
+    #Generate Path to Boss (Series of Rooms minimum # of rooms)
 
-# Generate Path to Boss (Series of Rooms minimum # of rooms)
+    #Generate Side Rooms (have maximum # of rooms)
 
-# Generate Side Rooms (have maximum # of rooms)
+    #Fill rooms with Monsters/Traps
 
-# Fill rooms with Monsters/Traps
+    #Fill rooms with Powerups
 
-# Fill rooms with Powerups
+    #Generate Checkpoints (after minimum # rooms from start)
 
-# Generate Checkpoints (after minimum # rooms from start)
+    #Generate Boss
 
-# Generate Boss
+#Generate Mini-Map
 
-# Generate Mini-Map
+    #Create mini-map of dungeon
 
-# Create mini-map of dungeon
+    #Hide all of mini-map except for rooms player has explored
 
-# Hide all of mini-map except for rooms player has explored
+#Start dungeon
+    
+    #Initialize Character (If new player)
 
-# Start dungeon
+    #Place Character in starting room
 
-# Initialize Character (If new player)
+    #Display Dungeon screen
 
-# Place Character in starting room
+#Combat (for monsters and traps)
 
-# Display Dungeon screen
+    #Combat music?
 
-# Combat (for monsters and traps)
+    #Intro to combat text ('It's an angry Andrew Bear!')
 
-# Combat music?
+    #Transition to combat screen
 
-# Intro to combat text ('It's an angry Andrew Bear!')
+    #Initialize instance of Monster
 
-# Transition to combat screen
+    #Attack 
 
-# Initialize instance of Monster
+        #Text ("The hobgoblin is attacking with 'What is the square root of 196?' How will you respond?")
 
-# Attack
+        #Multiple choice random generation and display ("A)12, B)16, C)14, D)RandomSarcasticAnswer, E)Use Items/Powers")
 
-# Text ("The hobgoblin is attacking with 'What is the square root of 196?' How will you respond?")
+        #Get input
 
-# Multiple choice random generation and display ("A)12, B)16, C)14, D)RandomSarcasticAnswer, E)Use Items/Powers")
+        #If Wrong input:
 
-# Get input
+            #Oh no! text, monster attack animation
 
-# If Wrong input:
+            #Reduce character HP
 
-# Oh no! text, monster attack animation
+            #Check player is alive
+                
+                #If not, go to failure screen
 
-# Reduce character HP
+            #Attack
 
-# Check player is alive
+        #If Correct input:
 
-# If not, go to failure screen
+            #Epic attack animation ("Wow! The correct answer was super effective")
 
-# Attack
+            #Reduce monster hp
 
-# If Correct input:
+            #Check if monster hp == 0
 
-# Epic attack animation ("Wow! The correct answer was super effective")
+                #If yes, End of Combat
+            
+            #Attack
+        
+        #If Use PowerUp/Skill:
 
-# Reduce monster hp
+            #Display list of stuff to use
 
-# Check if monster hp == 0
+            #Get input
 
-# If yes, End of Combat
+            #Apply Benefit
 
-# Attack
+            #Attack
+    
+    #End of Combat
 
-# If Use PowerUp/Skill:
+        #Victory Text
 
-# Display list of stuff to use
+        #Experience Text
 
-# Get input
+            #Modify Player exp
+        
+        #Transition back to dungeon
 
-# Apply Benefit
+#Move Rooms
 
-# Attack
+    #Open door animation
 
-# End of Combat
+    #Transition screen (screen wipe to new room?)
 
-# Victory Text
+    #Display room moved into (monsters, powerups, checkpoints)
 
-# Experience Text
+    #Previously visited room
 
-# Modify Player exp
+        #Update mini-map
 
-# Transition back to dungeon
+    #First time room 
 
-# Move Rooms
+        #If monster
 
-# Open door animation
+            #Auto move 1/4 into room
+            
+            #Combat
 
-# Transition screen (screen wipe to new room?)
+        #If no monster:
 
-# Display room moved into (monsters, powerups, checkpoints)
+            #Update minimap
+        
+#IF walk over powerup
 
-# Previously visited room
+#If click on checkpoint
 
-# Update mini-map
+#Failure Screen
 
-# First time room
+    #Oh no you died text and options
 
-# If monster
+    #Get input
 
-# Auto move 1/4 into room
+    #Try Again
 
-# Combat
+        #Respawn player at checkpoint using player stats from when they last visited the checkpoint
 
-# If no monster:
+    #Quit
 
-# Update minimap
+        #Return to title screen
 
-# IF walk over powerup
+#Combat Screen
 
-# If click on checkpoint
+    #Pokemon style? Character on lower left, enemy on upper right?
 
-# Failure Screen
+#Pause Screen
 
-# Oh no you died text and options
+    #Interrupt current process?
 
-# Get input
+    #Display options
 
-# Try Again
+        #Quit to Main Menu
 
-# Respawn player at checkpoint using player stats from when they last visited the checkpoint
+        #Quit to Desktop
 
-# Quit
+        #Return to last Checkpoint
 
-# Return to title screen
+        #Resume (Or press the same button that was used to open pause screen, usually "Esc")
 
-# Combat Screen
+    #Get input
 
-# Pokemon style? Character on lower left, enemy on upper right?
-
-# Pause Screen
-
-# Interrupt current process?
-
-# Display options
-
-# Quit to Main Menu
-
-# Quit to Desktop
-
-# Return to last Checkpoint
-
-# Resume (Or press the same button that was used to open pause screen, usually "Esc")
-
-# Get input
-
-# Do the thing
+    #Do the thing
