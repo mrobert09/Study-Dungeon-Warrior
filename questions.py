@@ -33,8 +33,9 @@ class Questions:
         # set of possible choices to be used as list indices
         choices = [0, 1, 2, 3]
 
-        # generates random question
+        # generates random integer as a list index
         full_question = self._questions[randint(0, len(self._questions) - 1)]
+
 
         # returns random number from choices set. Needs to be random so correct answer isn't always A
         choice1 = choices.pop(randint(0, len(choices) - 1))
@@ -64,13 +65,14 @@ class Questions:
     def answer_question(self):
         """
         Gets the random question and uses helper method to print it out. Allows user to answer the question.
-        Determines if answer is correct or not.
+        Determines if answer is correct or not. If answer is correct, question is removed from the list of questions
+        that can be generated and added to a list of used questions.
         :return: boolean (whether the question was answered correctly or not)
         """
         # generates the random question to use
         question = self.generate_question()
 
-        # prints out the qeustion
+        # prints out the question
         self.display_question(question)
 
         # gathers user input as answer to the question
@@ -86,5 +88,9 @@ class Questions:
 
         correct_answer = key_question[question[0]][0] == question[question_index]
         if correct_answer:
+            for index, dictionary in enumerate(self._questions):
+                if key_question == dictionary:
+                    adder = self._questions.pop(index)
+                    self._used_questions.append(adder)
             return True
         return False
