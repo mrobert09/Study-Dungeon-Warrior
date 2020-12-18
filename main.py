@@ -1,79 +1,98 @@
-import pygame
+import pygame as pg
+import math
+from settings import *
+from sprites import *
 
-# Initialize game
-pygame.init()
+class Game:
+    def __init__(self):
+        # initialize game window, etc
+        self.running = True
+        pg.init()
+        pg.mixer.init()  # in case we want to add sound later
+        self.screen = pg.display.set_mode((WIDTH, HEIGHT))
+        pg.display.set_caption(TITLE)
+        self.icon = pg.image.load("Images/icon-sword.png")
+        pg.display.set_icon(self.icon)
+        self.clock = pg.time.Clock()  # used to set FPS later
+        self.background = pg.image.load('Images/BasicRoom.png')
 
-# Create Game Window (pixels x-axis, pixels y-axis)
-screen = pygame.display.set_mode((800, 600))
+    def new(self):
+        # start a new game
+        self.all_sprites = pg.sprite.Group()
+        self.walls = pg.sprite.Group()
+        self.monsters = pg.sprite.Group()
+        self.player = Player(self, 10, 10, 'Images/actor.png')
+        for x in range(0, 19):
+            Wall(self, x, 0)
+        for x in range(0, 19):
+            Wall(self, x, 17)
+        for y in range(0, 17):
+            Wall(self, 0, y)
+        for y in range(0, 17):
+            Wall(self, 18, y)
+        self.monster1 = Monster(self, 8, 2, 'Images/monster.png')
+        self.run()
 
-# Title and Icon
-# pygame.display.set_caption("Study Dungeon Warrior")
-# icon = pygame.image.load("RoundBeaver-Logo.png")
-# pygame.display.set_icon(icon)
+    def run(self):
+        # Game Loop
+        self.playing = True
+        while self.playing:
+            self.clock.tick(FPS)  # FPS
+            # the three main components of the cycle
+            self.events()
+            self.update()
+            self.draw()
 
-# RoomBackground
-roombackground = pygame.image.load('Images/BasicRoom.png')
+    def update(self):
+        # Game Loop - update
+        self.all_sprites.update()
 
-# Player
-playerIMG = pygame.image.load('Images/actor.png')
-playerX = 370
-playerY = 370
-playerX_change = 0
-playerY_change = 0
+    def events(self):
+        # Game Loop - events
+        for event in pg.event.get():
+            # check for closing window. Exits both the game event and the window.
+            if event.type == pg.QUIT:
+                if self.playing:
+                    self.playing = False
+                self.running = False
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_ESCAPE:
+                    self.quit()
+                if event.key == pg.K_LEFT:
+                    self.player.move(dx=-1)
+                if event.key == pg.K_RIGHT:
+                    self.player.move(dx=1)
+                if event.key == pg.K_UP:
+                    self.player.move(dy=-1)
+                if event.key == pg.K_DOWN:
+                    self.player.move(dy=1)
 
 
-def player():
-    screen.blit(playerIMG, (playerX, playerY))
+    def draw_grid(self):
+        for x in range(0, WIDTH, TILESIZE):
+            pg.draw.line(self.screen, LIGHTGREY, (x, 0), (x, HEIGHT))
+        for y in range(0, HEIGHT, TILESIZE):
+            pg.draw.line(self.screen, LIGHTGREY, (0, y), (WIDTH, y))
 
+    def draw(self):
+        # Game Loop - draw
+        self.screen.blit(self.background, (0,0))
+        self.draw_grid()
+        self.all_sprites.draw(self.screen)
+        # always do last after drawing everything
+        pg.display.flip()  # very important to make less intensive / slow
 
-def collision():
-    pass
+    def show_start_screen(self):
+        # game splash/start screen
+        pass
 
+    def show_go_screen(self):
+        # game over/continue
+        pass
 
-def movement_controls():
-    pass
-
-
-# Game Loop
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-        # Player Movement
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                playerX_change = -0.1
-            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                playerX_change = 0.1
-            if event.key == pygame.K_UP or event.key == pygame.K_w:
-                playerY_change = -0.1
-            if event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                playerY_change = 0.1
-
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                playerX_change = 0
-            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                playerX_change = 0
-            if event.key == pygame.K_UP or event.key == pygame.K_w:
-                playerY_change = 0
-            if event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                playerY_change = 0
-
-    playerX += playerX_change
-    playerY += playerY_change
-
-    # Room Boundaries
-    if playerX < 30:
-        playerX = 30
-    if playerX > 540:
-        playerX = 540
-    if playerY < 30:
-        playerY = 30
-    if playerY > 520:
-        playerY = 520
-    screen.blit(roombackground, (0, 0))
-    player()
-    pygame.display.update()
+# create the game object
+g = Game()
+g.show_start_screen()
+while g.running:
+    g.new()
+    g.show_go_screen()

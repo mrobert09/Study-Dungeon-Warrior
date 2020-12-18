@@ -12,4 +12,7 @@ Working on code.
 
 This is Matt's change. Change #2.
 
+Window icon made by Freepik from www.flaticon.com
+Monster sprite made by Smashicons from www.flaticon.com
+
 
