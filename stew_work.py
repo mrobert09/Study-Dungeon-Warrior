@@ -33,3 +33,5 @@ class Character():
 
 class Dungeon():
     """class that stores the dungeon"""
+
+    def __init__(self):
