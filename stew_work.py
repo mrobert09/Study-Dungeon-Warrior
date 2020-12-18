@@ -24,6 +24,20 @@ class Character():
         """
         self.hp -= dmg
 
+    def gain_exp(self, amt):
+        """gains the amount of experience inputted, if it goes over 10 times the level then levels up
+        and resets exp appropriately"""
+        self.exp += amt
+        if self.exp >= (self.lvl * 10):
+            self.lvl_up()
+
+    def lvl_up(self):
+        """levels up, assumes that experience is greater than or equal to 10 times level"""
+        if self.exp < 10 * self.lvl:
+            return
+        self.exp -= 10*(self.lvl)
+        self.lvl += 1
+
     def get_hp(self):
         """returns the current amount of health"""
         return self.hp
@@ -59,6 +73,10 @@ class Dungeon():
          """
         return [[False for num_col in range(self.depth)] for num_row in range(self.depth)]
 
+    def get_start_room(self):
+        """Returns location of starting room"""
+        return self.start_room
+
     #Notation for rooms in grid [bool-is-encounter-active,row,col,left,up,right,down0/1, room-name
     def make_rooms(self, num_rooms):
         """Generates a dungeon full of rooms, takes the number of rooms to generate"""
@@ -73,6 +91,8 @@ class Dungeon():
                 self.map[row][col] = [True, row, col,0,0,0,0,("Room " + str(counter+1))]
                 if previous_room_dir:
                     self.map[row][col][((previous_room_dir +1)%4)+3] = 1
+                else:
+                    self.start_room = (row,col)
             else:
                 self.map[row][col] = [True, row, col,0,0,0,0,"Boss Room"]
                 self.map[row][col][((previous_room_dir +1)%4)+3] = 1
