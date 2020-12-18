@@ -21,7 +21,7 @@ class Game:
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
         self.monsters = pg.sprite.Group()
-        self.player = Player(self, 10, 10, 'Images/actor.png')
+        self.player = Player(self, 8, 14, 'Images/actor.png')
         for x in range(0, 19):
             Wall(self, x, 0)
         for x in range(0, 19):
@@ -30,14 +30,15 @@ class Game:
             Wall(self, 0, y)
         for y in range(0, 17):
             Wall(self, 18, y)
-        self.monster1 = Monster(self, 8, 2, 'Images/monster.png')
+        self.monster1 = Monster(self, 8, 1, 'Images/monster.png')
         self.run()
 
     def run(self):
         # Game Loop
         self.playing = True
         while self.playing:
-            self.clock.tick(FPS)  # FPS
+            # dt = how much time the previous frame took, given in milliseconds
+            self.dt = self.clock.tick(FPS) / 1000  # dividing by 1000 to convert to seconds
             # the three main components of the cycle
             self.events()
             self.update()
@@ -45,7 +46,7 @@ class Game:
 
     def update(self):
         # Game Loop - update
-        self.all_sprites.update()
+        self.all_sprites.update()  # passing dt to make movement speed not tied to frame rate, but time
 
     def events(self):
         # Game Loop - events
@@ -55,17 +56,6 @@ class Game:
                 if self.playing:
                     self.playing = False
                 self.running = False
-            if event.type == pg.KEYDOWN:
-                if event.key == pg.K_ESCAPE:
-                    self.quit()
-                if event.key == pg.K_LEFT:
-                    self.player.move(dx=-1)
-                if event.key == pg.K_RIGHT:
-                    self.player.move(dx=1)
-                if event.key == pg.K_UP:
-                    self.player.move(dy=-1)
-                if event.key == pg.K_DOWN:
-                    self.player.move(dy=1)
 
 
     def draw_grid(self):
