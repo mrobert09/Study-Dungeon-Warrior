@@ -123,6 +123,7 @@ class Dungeon():
         if room[6] == 0 and room[1]-1 >= 0:
             list_poss_rooms.append(4)
         if len(list_poss_rooms) == 0:
+            print("cant build from here", row, col)
             return False
         else:
             pick_dir = rand.randint(0,(len(list_poss_rooms)-1))
