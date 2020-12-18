@@ -14,7 +14,9 @@ class Character():
         self.max_hp = hp
 
     def take_dmg(self, dmg):
-        """takes an int amount of damage dealt to character"""
+        """takes an int amount of damage dealt to character, can take negative number for
+        gaining health
+        """
         self.hp -= dmg
 
     def get_hp(self):
@@ -25,3 +27,9 @@ class Character():
         """returns the max health of character"""
         return self.max_hp
 
+    def get_atk_dmg(self):
+        """returns the amount of damage character does when it gets correct answer"""
+        return self.atk
+
+class Dungeon():
+    """class that stores the dungeon"""
