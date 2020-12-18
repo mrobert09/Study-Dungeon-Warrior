@@ -1,188 +1,237 @@
 import pygame
 
-#Initialize game
+# Initialize game
 pygame.init()
 
-#Create Game Window (pixels x-axis, pixels y-axis)
+# Create Game Window (pixels x-axis, pixels y-axis)
 screen = pygame.display.set_mode((800, 600))
 
-
-#Title and Icon
+# Title and Icon
 # pygame.display.set_caption("Study Dungeon Warrior")
 # icon = pygame.image.load("RoundBeaver-Logo.png")
 # pygame.display.set_icon(icon)
 
-#RoomBackground
+# RoomBackground
 roombackground = pygame.image.load('Images/BasicRoom.png')
 
-#Game Loop
+# Player
+playerIMG = pygame.image.load('Images/actor.png')
+playerX = 370
+playerY = 370
+playerX_change = 0
+playerY_change = 0
+
+
+def player():
+    screen.blit(playerIMG, (playerX, playerY))
+
+
+def collision():
+    pass
+
+
+def movement_controls():
+    pass
+
+
+# Game Loop
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        print(event)
-    
-    screen.blit(roombackground, (0,0))
+
+        # Player Movement
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
+                playerX_change = -0.1
+            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+                playerX_change = 0.1
+            if event.key == pygame.K_UP or event.key == pygame.K_w:
+                playerY_change = -0.1
+            if event.key == pygame.K_DOWN or event.key == pygame.K_s:
+                playerY_change = 0.1
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
+                playerX_change = 0
+            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+                playerX_change = 0
+            if event.key == pygame.K_UP or event.key == pygame.K_w:
+                playerY_change = 0
+            if event.key == pygame.K_DOWN or event.key == pygame.K_s:
+                playerY_change = 0
+
+    playerX += playerX_change
+    playerY += playerY_change
+
+    # Room Boundaries
+    if playerX < 30:
+        playerX = 30
+    if playerX > 540:
+        playerX = 540
+    if playerY < 30:
+        playerY = 30
+    if playerY > 520:
+        playerY = 520
+    screen.blit(roombackground, (0, 0))
+    player()
     pygame.display.update()
-
-
-
 
 ######### Outline ##########
 
-#Generate Dungeon
+# Generate Dungeon
 
-    #Generate starting room
+# Generate starting room
 
-    #Generate Path to Boss (Series of Rooms minimum # of rooms)
+# Generate Path to Boss (Series of Rooms minimum # of rooms)
 
-    #Generate Side Rooms (have maximum # of rooms)
+# Generate Side Rooms (have maximum # of rooms)
 
-    #Fill rooms with Monsters/Traps
+# Fill rooms with Monsters/Traps
 
-    #Fill rooms with Powerups
+# Fill rooms with Powerups
 
-    #Generate Checkpoints (after minimum # rooms from start)
+# Generate Checkpoints (after minimum # rooms from start)
 
-    #Generate Boss
+# Generate Boss
 
-#Generate Mini-Map
+# Generate Mini-Map
 
-    #Create mini-map of dungeon
+# Create mini-map of dungeon
 
-    #Hide all of mini-map except for rooms player has explored
+# Hide all of mini-map except for rooms player has explored
 
-#Start dungeon
+# Start dungeon
 
-    #Initialize Character (If new player)
+# Initialize Character (If new player)
 
-    #Place Character in starting room
+# Place Character in starting room
 
-    #Display Dungeon screen
+# Display Dungeon screen
 
-#Combat (for monsters and traps)
+# Combat (for monsters and traps)
 
-    #Combat music?
+# Combat music?
 
-    #Intro to combat text ('It's an angry Andrew Bear!')
+# Intro to combat text ('It's an angry Andrew Bear!')
 
-    #Transition to combat screen
+# Transition to combat screen
 
-    #Initialize instance of Monster
+# Initialize instance of Monster
 
-    #Attack
+# Attack
 
-        #Text ("The hobgoblin is attacking with 'What is the square root of 196?' How will you respond?")
+# Text ("The hobgoblin is attacking with 'What is the square root of 196?' How will you respond?")
 
-        #Multiple choice random generation and display ("A)12, B)16, C)14, D)RandomSarcasticAnswer, E)Use Items/Powers")
+# Multiple choice random generation and display ("A)12, B)16, C)14, D)RandomSarcasticAnswer, E)Use Items/Powers")
 
-        #Get input
+# Get input
 
-        #If Wrong input:
+# If Wrong input:
 
-            #Oh no! text, monster attack animation
+# Oh no! text, monster attack animation
 
-            #Reduce character HP
+# Reduce character HP
 
-            #Check player is alive
+# Check player is alive
 
-                #If not, go to failure screen
+# If not, go to failure screen
 
-            #Attack
+# Attack
 
-        #If Correct input:
+# If Correct input:
 
-            #Epic attack animation ("Wow! The correct answer was super effective")
+# Epic attack animation ("Wow! The correct answer was super effective")
 
-            #Reduce monster hp
+# Reduce monster hp
 
-            #Check if monster hp == 0
+# Check if monster hp == 0
 
-                #If yes, End of Combat
+# If yes, End of Combat
 
-            #Attack
+# Attack
 
-        #If Use PowerUp/Skill:
+# If Use PowerUp/Skill:
 
-            #Display list of stuff to use
+# Display list of stuff to use
 
-            #Get input
+# Get input
 
-            #Apply Benefit
+# Apply Benefit
 
-            #Attack
+# Attack
 
-    #End of Combat
+# End of Combat
 
-        #Victory Text
+# Victory Text
 
-        #Experience Text
+# Experience Text
 
-            #Modify Player exp
+# Modify Player exp
 
-        #Transition back to dungeon
+# Transition back to dungeon
 
-#Move Rooms
+# Move Rooms
 
-    #Open door animation
+# Open door animation
 
-    #Transition screen (screen wipe to new room?)
+# Transition screen (screen wipe to new room?)
 
-    #Display room moved into (monsters, powerups, checkpoints)
+# Display room moved into (monsters, powerups, checkpoints)
 
-    #Previously visited room
+# Previously visited room
 
-        #Update mini-map
+# Update mini-map
 
-    #First time room
+# First time room
 
-        #If monster
+# If monster
 
-            #Auto move 1/4 into room
+# Auto move 1/4 into room
 
-            #Combat
+# Combat
 
-        #If no monster:
+# If no monster:
 
-            #Update minimap
+# Update minimap
 
-#IF walk over powerup
+# IF walk over powerup
 
-#If click on checkpoint
+# If click on checkpoint
 
-#Failure Screen
+# Failure Screen
 
-    #Oh no you died text and options
+# Oh no you died text and options
 
-    #Get input
+# Get input
 
-    #Try Again
+# Try Again
 
-        #Respawn player at checkpoint using player stats from when they last visited the checkpoint
+# Respawn player at checkpoint using player stats from when they last visited the checkpoint
 
-    #Quit
+# Quit
 
-        #Return to title screen
+# Return to title screen
 
-#Combat Screen
+# Combat Screen
 
-    #Pokemon style? Character on lower left, enemy on upper right?
+# Pokemon style? Character on lower left, enemy on upper right?
 
-#Pause Screen
+# Pause Screen
 
-    #Interrupt current process?
+# Interrupt current process?
 
-    #Display options
+# Display options
 
-        #Quit to Main Menu
+# Quit to Main Menu
 
-        #Quit to Desktop
+# Quit to Desktop
 
-        #Return to last Checkpoint
+# Return to last Checkpoint
 
-        #Resume (Or press the same button that was used to open pause screen, usually "Esc")
+# Resume (Or press the same button that was used to open pause screen, usually "Esc")
 
-    #Get input
+# Get input
 
-    #Do the thing
+# Do the thing
