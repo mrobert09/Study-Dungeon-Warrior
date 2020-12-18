@@ -1,237 +1,98 @@
-import pygame
-
-# Initialize game
-pygame.init()
-
-# Create Game Window (pixels x-axis, pixels y-axis)
-screen = pygame.display.set_mode((800, 600))
-
-# Title and Icon
-# pygame.display.set_caption("Study Dungeon Warrior")
-# icon = pygame.image.load("RoundBeaver-Logo.png")
-# pygame.display.set_icon(icon)
-
-# RoomBackground
-roombackground = pygame.image.load('Images/BasicRoom.png')
-
-# Player
-playerIMG = pygame.image.load('Images/actor.png')
-playerX = 370
-playerY = 370
-playerX_change = 0
-playerY_change = 0
-
-
-def player():
-    screen.blit(playerIMG, (playerX, playerY))
-
-
-def collision():
-    pass
-
-
-def movement_controls():
-    pass
-
-
-# Game Loop
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-        # Player Movement
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                playerX_change = -0.1
-            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                playerX_change = 0.1
-            if event.key == pygame.K_UP or event.key == pygame.K_w:
-                playerY_change = -0.1
-            if event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                playerY_change = 0.1
-
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                playerX_change = 0
-            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                playerX_change = 0
-            if event.key == pygame.K_UP or event.key == pygame.K_w:
-                playerY_change = 0
-            if event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                playerY_change = 0
-
-    playerX += playerX_change
-    playerY += playerY_change
-
-    # Room Boundaries
-    if playerX < 30:
-        playerX = 30
-    if playerX > 540:
-        playerX = 540
-    if playerY < 30:
-        playerY = 30
-    if playerY > 520:
-        playerY = 520
-    screen.blit(roombackground, (0, 0))
-    player()
-    pygame.display.update()
-
-######### Outline ##########
-
-# Generate Dungeon
-
-# Generate starting room
-
-# Generate Path to Boss (Series of Rooms minimum # of rooms)
-
-# Generate Side Rooms (have maximum # of rooms)
-
-# Fill rooms with Monsters/Traps
-
-# Fill rooms with Powerups
-
-# Generate Checkpoints (after minimum # rooms from start)
-
-# Generate Boss
-
-# Generate Mini-Map
-
-# Create mini-map of dungeon
-
-# Hide all of mini-map except for rooms player has explored
-
-# Start dungeon
-
-# Initialize Character (If new player)
-
-# Place Character in starting room
-
-# Display Dungeon screen
-
-# Combat (for monsters and traps)
-
-# Combat music?
-
-# Intro to combat text ('It's an angry Andrew Bear!')
-
-# Transition to combat screen
-
-# Initialize instance of Monster
-
-# Attack
-
-# Text ("The hobgoblin is attacking with 'What is the square root of 196?' How will you respond?")
-
-# Multiple choice random generation and display ("A)12, B)16, C)14, D)RandomSarcasticAnswer, E)Use Items/Powers")
-
-# Get input
-
-# If Wrong input:
-
-# Oh no! text, monster attack animation
-
-# Reduce character HP
-
-# Check player is alive
-
-# If not, go to failure screen
-
-# Attack
-
-# If Correct input:
-
-# Epic attack animation ("Wow! The correct answer was super effective")
-
-# Reduce monster hp
-
-# Check if monster hp == 0
-
-# If yes, End of Combat
-
-# Attack
-
-# If Use PowerUp/Skill:
-
-# Display list of stuff to use
-
-# Get input
-
-# Apply Benefit
-
-# Attack
-
-# End of Combat
-
-# Victory Text
-
-# Experience Text
-
-# Modify Player exp
-
-# Transition back to dungeon
-
-# Move Rooms
-
-# Open door animation
-
-# Transition screen (screen wipe to new room?)
-
-# Display room moved into (monsters, powerups, checkpoints)
-
-# Previously visited room
-
-# Update mini-map
-
-# First time room
-
-# If monster
-
-# Auto move 1/4 into room
-
-# Combat
-
-# If no monster:
-
-# Update minimap
-
-# IF walk over powerup
-
-# If click on checkpoint
-
-# Failure Screen
-
-# Oh no you died text and options
-
-# Get input
-
-# Try Again
-
-# Respawn player at checkpoint using player stats from when they last visited the checkpoint
-
-# Quit
-
-# Return to title screen
-
-# Combat Screen
-
-# Pokemon style? Character on lower left, enemy on upper right?
-
-# Pause Screen
-
-# Interrupt current process?
-
-# Display options
-
-# Quit to Main Menu
-
-# Quit to Desktop
-
-# Return to last Checkpoint
-
-# Resume (Or press the same button that was used to open pause screen, usually "Esc")
-
-# Get input
-
-# Do the thing
+import pygame as pg
+import math
+from settings import *
+from sprites import *
+
+class Game:
+    def __init__(self):
+        # initialize game window, etc
+        self.running = True
+        pg.init()
+        pg.mixer.init()  # in case we want to add sound later
+        self.screen = pg.display.set_mode((WIDTH, HEIGHT))
+        pg.display.set_caption(TITLE)
+        self.icon = pg.image.load("Images/icon-sword.png")
+        pg.display.set_icon(self.icon)
+        self.clock = pg.time.Clock()  # used to set FPS later
+        self.background = pg.image.load('Images/BasicRoom.png')
+
+    def new(self):
+        # start a new game
+        self.all_sprites = pg.sprite.Group()
+        self.walls = pg.sprite.Group()
+        self.monsters = pg.sprite.Group()
+        self.player = Player(self, 10, 10, 'Images/actor.png')
+        for x in range(0, 19):
+            Wall(self, x, 0)
+        for x in range(0, 19):
+            Wall(self, x, 17)
+        for y in range(0, 17):
+            Wall(self, 0, y)
+        for y in range(0, 17):
+            Wall(self, 18, y)
+        self.monster1 = Monster(self, 8, 2, 'Images/monster.png')
+        self.run()
+
+    def run(self):
+        # Game Loop
+        self.playing = True
+        while self.playing:
+            self.clock.tick(FPS)  # FPS
+            # the three main components of the cycle
+            self.events()
+            self.update()
+            self.draw()
+
+    def update(self):
+        # Game Loop - update
+        self.all_sprites.update()
+
+    def events(self):
+        # Game Loop - events
+        for event in pg.event.get():
+            # check for closing window. Exits both the game event and the window.
+            if event.type == pg.QUIT:
+                if self.playing:
+                    self.playing = False
+                self.running = False
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_ESCAPE:
+                    self.quit()
+                if event.key == pg.K_LEFT:
+                    self.player.move(dx=-1)
+                if event.key == pg.K_RIGHT:
+                    self.player.move(dx=1)
+                if event.key == pg.K_UP:
+                    self.player.move(dy=-1)
+                if event.key == pg.K_DOWN:
+                    self.player.move(dy=1)
+
+
+    def draw_grid(self):
+        for x in range(0, WIDTH, TILESIZE):
+            pg.draw.line(self.screen, LIGHTGREY, (x, 0), (x, HEIGHT))
+        for y in range(0, HEIGHT, TILESIZE):
+            pg.draw.line(self.screen, LIGHTGREY, (0, y), (WIDTH, y))
+
+    def draw(self):
+        # Game Loop - draw
+        self.screen.blit(self.background, (0,0))
+        self.draw_grid()
+        self.all_sprites.draw(self.screen)
+        # always do last after drawing everything
+        pg.display.flip()  # very important to make less intensive / slow
+
+    def show_start_screen(self):
+        # game splash/start screen
+        pass
+
+    def show_go_screen(self):
+        # game over/continue
+        pass
+
+# create the game object
+g = Game()
+g.show_start_screen()
+while g.running:
+    g.new()
+    g.show_go_screen()
