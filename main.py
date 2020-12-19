@@ -25,6 +25,7 @@ class Game:
         self.room1 = Room(self, 'Images/BasicRoom.png', 1, 1, 1, 1)
         self.room1.room_creation()
         self.player = Player(self, 8, 14, 'Images/actor.png')
+        self.minimap = Minimap(self, 19, 0, self.dungeon)
         self.run()
 
     def run(self):
