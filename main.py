@@ -1,14 +1,17 @@
 import pygame as pg
 import math
 from settings import *
+from minimap import *
 from sprites import *
 from rooms import *
+from stew_work import *
 
 
 class Game:
     def __init__(self):
         # initialize game window, etc
         self.running = True
+        self.dungeon = Dungeon(14)
         pg.init()
         pg.mixer.init()  # in case we want to add sound later
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -73,10 +76,11 @@ class Game:
         # game over/continue
         pass
 
-
 # create the game object
 g = Game()
 g.show_start_screen()
+
+#Game Loop
 while g.running:
     g.new()
     g.show_go_screen()
