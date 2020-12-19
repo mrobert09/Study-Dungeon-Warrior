@@ -101,28 +101,41 @@ class Questions:
         that can be generated and added to a list of used questions.
         :return: boolean (whether the question was answered correctly or not)
         """
-        # generates the random question to use
-        question = self.generate_question()
+        if self._questions:
+            # generates the random question to use
+            question = self.generate_question()
 
-        # prints out the question
-        self.display_question(question)
+            # prints out the question
+            self.display_question(question)
 
-        # gathers user input as answer to the question
-        user_answer = input('The answer is:\n')
+            # gathers user input as answer to the question
+            user_answer = input('The answer is:\n')
 
-        # maps the user input to a list index to be used
-        question_index = self._answer_keys[user_answer.upper()]
+            while user_answer:
+                if 'A' <= user_answer.upper() <= 'D':
+                    # maps the user input to a list index to be used
+                    question_index = self._answer_keys[user_answer.upper()]
 
-        # finds the question that was asked
-        for dictionary in self._questions:
-            if question[0] in dictionary:
-                key_question = dictionary
+                    # finds the question that was asked
+                    for dictionary in self._questions:
+                        if question[0] in dictionary:
+                            key_question = dictionary
 
-        correct_answer = key_question[question[0]][0] == question[question_index]
-        if correct_answer:
-            for index, dictionary in enumerate(self._questions):
-                if key_question == dictionary:
-                    adder = self._questions.pop(index)
-                    self._used_questions.append(adder)
-            return True
-        return False
+                    correct_answer = key_question[question[0]][0] == question[question_index]
+                    if correct_answer:
+                        for index, dictionary in enumerate(self._questions):
+                            if key_question == dictionary:
+                                adder = self._questions.pop(index)
+                                self._used_questions.append(adder)
+                        return True
+                    else:
+                        print('WRONG!')
+                        return False
+
+                else:
+                    user_answer = input('Not a valid answer. Try again.\n')
+        else:
+            print('No questions available yet. Please add some.')
+            return False
+q = Questions()
+q.answer_question()
