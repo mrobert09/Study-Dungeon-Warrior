@@ -107,4 +107,4 @@ class Wall(pg.sprite.Sprite):
         self.y = y
         self.rect.x = x * TILESIZE
         self.rect.y = y * TILESIZE
-        self.image.set_colorkey(GREEN)  # makes the green wall transparent, comment out to see them
+       # self.image.set_colorkey(GREEN)  # makes the green wall transparent, comment out to see them
