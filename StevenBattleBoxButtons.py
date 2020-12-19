@@ -7,7 +7,7 @@ pygame.init()
 screen = pygame.display.set_mode((800, 600))
 
 #Text Stuff
-oswfont32 = pygame.font.Font("Oswald-Regular.ttf", 32)
+oswfont32 = pygame.font.Font("Fonts/Oswald-VariableFont_wght.ttf", 32)
 
 #Colors
 WHITE = (255, 255, 255)
@@ -82,10 +82,11 @@ class TextBox:
         self.response_C = ''
         self.response_D = ''
         self.response_E = ''
-        self.button_A = Button(BLACK, self.x + 10, self.y + 120, self.width -20, 50, text = self.response_A, text_color = WHITE)
-        self.button_B = Button(BLACK, self.x + 10, self.y + 180, self.width -20, 50, text = self.response_B, text_color = WHITE)
-        self.button_C = Button(BLACK, self.x + 10, self.y + 240, self.width -20, 50, text = self.response_C, text_color = WHITE)
-        self.button_D = Button(BLACK, self.x + 10, self.y + 300, self.width -20, 50, text = self.response_D, text_color = WHITE)
+        self.button_A = Button(BLACK, self.x + 10, self.y + 120, self.width -20, height = 50, text = self.response_A, text_color = WHITE)
+        self.button_B = Button(BLACK, self.x + 10, self.y + 180, self.width -20, height = 50, text = self.response_B, text_color = WHITE)
+        self.button_C = Button(BLACK, self.x + 10, self.y + 240, self.width -20, height = 50, text = self.response_C, text_color = WHITE)
+        self.button_D = Button(BLACK, self.x + 10, self.y + 300, self.width -20, height = 50, text = self.response_D, text_color = WHITE)
+        self.button_E = Button(BLACK, self.x + 10, self.y + 360, self.width -20, height = 50, text = self.response_D, text_color = WHITE)
         self.buttons_list = [self.button_A, self.button_B, self.button_C, self.button_D]
 
     def draw_background(self):
@@ -180,8 +181,9 @@ class TextBox:
         self.button_B.draw_button(screen)
         self.button_C.draw_button(screen)
         self.button_D.draw_button(screen)
+        self.button_E.draw_button(screen)
 
-question = TextBox(WHITE, BLACK, 10, 10, 400, 400, screen, oswfont32)
+question = TextBox(WHITE, BLACK, 100, 70, 400, 420, screen, oswfont32)
 question.set_read_text("What is the atomic number for Helium?")
 question.set_response_A("2")
 question.set_response_B("4")
@@ -207,5 +209,6 @@ while running:
             question.button_B.mouse_hover_color(GREY)
             question.button_C.mouse_hover_color(GREY)
             question.button_D.mouse_hover_color(GREY)
+            question.button_E.mouse_hover_color(GREY)
     
     pygame.display.update()
