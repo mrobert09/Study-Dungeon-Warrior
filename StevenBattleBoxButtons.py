@@ -1,5 +1,5 @@
 import pygame
-
+from settings import *
 # Initialize game
 pygame.init()
 
@@ -8,11 +8,6 @@ screen = pygame.display.set_mode((800, 600))
 
 #Text Stuff
 oswfont32 = pygame.font.Font("Fonts/Oswald-VariableFont_wght.ttf", 32)
-
-#Colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-GREY = (100, 100, 100)
 
 class Button:
     """Creation and methods for handling buttons"""
@@ -54,18 +49,18 @@ class Button:
         else:
             self.color = self.original_color
 
-class TextBox:
-    """Creates a TextBox object (add better docstring)"""
+class MultipleChoiceBox:
+    """Creates a MultipleChoiceBox object (add better docstring)"""
 
     def __init__(self, box_color, border_color, x, y, width, height, surface, text_font):
         """
-        Initializes a Textbox 
+        Initializes a MultipleChoiceBox
         upper left corner at coordinates x, y
         width = # of pixels wide
         height = # of pixels tall
         box_color = color of the box
         border_color =  color of the border
-        surface = on which surface the textbox should appear
+        surface = on which surface the MultipleChoiceBox should appear
         """
         self.x = x
         self.y = y
@@ -87,7 +82,7 @@ class TextBox:
         self.button_C = Button(BLACK, self.x + 10, self.y + 240, self.width -20, height = 50, text = self.response_C, text_color = WHITE)
         self.button_D = Button(BLACK, self.x + 10, self.y + 300, self.width -20, height = 50, text = self.response_D, text_color = WHITE)
         self.button_E = Button(BLACK, self.x + 10, self.y + 360, self.width -20, height = 50, text = self.response_D, text_color = WHITE)
-        self.buttons_list = [self.button_A, self.button_B, self.button_C, self.button_D]
+        self.buttons_list = [self.button_A, self.button_B, self.button_C, self.button_D, self.button_E]
 
     def draw_background(self):
         """Draws the background text box on top of given surface"""
@@ -169,12 +164,12 @@ class TextBox:
         self.button_E = Button(BLACK, self.x + 10, self.y + 360, self.width -20, 50, text = self.response_E, text_color = WHITE)
 
     def draw_read_text(self):
-        """Draws the read text at the top of the Textbox"""
+        """Draws the question text at the top of the MultipleChoiceBox"""
         text_boundary = pygame.Rect(self.x + 10, self.y + 10, self.width - 20, self.height)
         self.draw_text(self.surface, self.read_text, BLACK, text_boundary, self.font)
     
-    def display_textbox(self):
-        """A function to display the textbox and all of its contents"""
+    def display_MultipleChoiceBox(self):
+        """A function to display the MultipleChoiceBox and all of its contents in the game loop"""
         self.draw_background()
         self.draw_read_text()
         self.button_A.draw_button(screen)
@@ -183,7 +178,7 @@ class TextBox:
         self.button_D.draw_button(screen)
         self.button_E.draw_button(screen)
 
-question = TextBox(WHITE, BLACK, 100, 70, 400, 420, screen, oswfont32)
+question = MultipleChoiceBox(WHITE, BLACK, 100, 70, 400, 420, screen, oswfont32) #coordinates to center MultipleChoiceBox on room 
 question.set_read_text("What is the atomic number for Helium?")
 question.set_response_A("2")
 question.set_response_B("4")
@@ -197,7 +192,7 @@ while running:
 
     screen.fill(WHITE)
 
-    question.display_textbox()
+    question.display_MultipleChoiceBox()
 
     
     for event in pygame.event.get():
@@ -205,10 +200,10 @@ while running:
             running = False
 
         if event.type == pygame.MOUSEMOTION:
-            question.button_A.mouse_hover_color(GREY)
-            question.button_B.mouse_hover_color(GREY)
-            question.button_C.mouse_hover_color(GREY)
-            question.button_D.mouse_hover_color(GREY)
-            question.button_E.mouse_hover_color(GREY)
+            question.button_A.mouse_hover_color(LIGHTGREY)
+            question.button_B.mouse_hover_color(LIGHTGREY)
+            question.button_C.mouse_hover_color(LIGHTGREY)
+            question.button_D.mouse_hover_color(LIGHTGREY)
+            question.button_E.mouse_hover_color(LIGHTGREY)
     
     pygame.display.update()
