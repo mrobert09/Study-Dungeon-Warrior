@@ -109,8 +109,8 @@ class Wall(pg.sprite.Sprite):
         self.rect.y = y * TILESIZE
        # self.image.set_colorkey(GREEN)  # makes the green wall transparent, comment out to see them
 
-class Minimap(pg.sprite.Sprite):
-    def __init__(self, game, x, y):
-        self.groups = game.all_sprites, game.walls
-        pg.sprite.Sprite.__init__(self, self.groups)
-        self.game = game
+# class Minimap(pg.sprite.Sprite):
+#     def __init__(self, game, x, y):
+#         self.groups = game.all_sprites, game.walls
+#         pg.sprite.Sprite.__init__(self, self.groups)
+#         self.game = game

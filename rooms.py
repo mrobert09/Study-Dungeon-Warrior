@@ -19,14 +19,7 @@ class Room:
         self.game.walls = pg.sprite.Group()
         self.game.monsters = pg.sprite.Group()
         self.create_walls()
-        # for x in range(0, 19):
-        #     Wall(self.game, x, 0)
-        # for x in range(0, 19):
-        #     Wall(self.game, x, 17)
-        # for y in range(0, 17):
-        #     Wall(self.game, 0, y)
-        # for y in range(0, 17):
-        #     Wall(self.game, 18, y)
+
         self.game.monster1 = Monster(self.game, 8, 1, 'Images/monster.png')
 
     def create_walls(self):

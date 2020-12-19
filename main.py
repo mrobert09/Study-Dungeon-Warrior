@@ -1,7 +1,6 @@
 import pygame as pg
 import math
 from settings import *
-from minimap import *
 from sprites import *
 from rooms import *
 from stew_work import *
