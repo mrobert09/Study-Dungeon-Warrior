@@ -124,3 +124,4 @@ class Minimap(pg.sprite.Sprite):
         self.rect.x = self.x * TILESIZE
         self.rect.y = self.y * TILESIZE
 
+
