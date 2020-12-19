@@ -175,6 +175,3 @@ class Dungeon():
 
 
 
-
-
-dungeon = Dungeon(20)

@@ -9,10 +9,12 @@ from settings import *
 
 minimap_size = 144
 
-class Minimap():
+class Minimap(pg.sprite.Sprite):
 
-    def __init__(self, dungeon):
+    def __init__(self, game, x, y):
         self.num_blocks = dungeon.depth
+        self.groups = game.all_sprites, game.minimap
+        pg.sprite.Sprite.__init__(self, self.groups, Dungeon(14))
         self.x_cor = WIDTH - minimap_size
         self.y_cor = 0
         self.rectangle = pg.Rect(self.x_cor, self.y_cor, minimap_size, minimap_size)
@@ -22,8 +24,5 @@ class Minimap():
     def draw(self, surface):
         pg.draw.rect(surface,self.color,self.rectangle)
 
-
-mini_map = Minimap(dungeon)
-mini_map.draw()
 
 
