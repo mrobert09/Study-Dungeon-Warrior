@@ -11,6 +11,7 @@ class Game:
         # initialize game window, etc
         self.running = True
         self.dungeon = Dungeon(14)
+        self.character = Character()
         pg.init()
         pg.mixer.init()  # in case we want to add sound later
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
