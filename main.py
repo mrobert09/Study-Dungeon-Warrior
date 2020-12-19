@@ -10,7 +10,7 @@ class Game:
     def __init__(self):
         # initialize game window, etc
         self.running = True
-        self.dungeon = Dungeon(14)
+        self.dungeon = Dungeon(ROOM_NUMBER)
         self.character = Character()
         pg.init()
         pg.mixer.init()  # in case we want to add sound later
@@ -23,8 +23,17 @@ class Game:
     def new(self):
         # start a new game
         self.all_sprites = pg.sprite.Group()
-        self.room1 = Room(self, 'Images/BasicRoom.png', 1, 1, 1, 1)
-        self.room1.room_creation()
+        self.rooms = []
+        for level in self.dungeon.map:
+            for spot in level:
+                if spot:
+                    x = int(spot[3])
+                    y = int(spot[4])
+                    z = int(spot[5])
+                    zz = int(spot[6])
+                    self.rooms.append(Room(self, 'Images/BasicRoom.png', x, y, z, zz, spot[7]))
+        #self.room1 = Room(self, 'Images/BasicRoom.png', 1, 1, 1, 1)
+        #self.room1.room_creation()
         self.player = Player(self, 8, 14, 'Images/actor.png')
         self.minimap = Minimap(self, 19, 0, self.dungeon)
         self.run()
@@ -56,7 +65,7 @@ class Game:
     def draw(self):
         # Game Loop - draw
         # self.screen.blit(self.background, (0, 0))
-        self.room1.get_background()
+        self.rooms[0].get_background()
         self.draw_grid()
         self.all_sprites.draw(self.screen)
         # always do last after drawing everything

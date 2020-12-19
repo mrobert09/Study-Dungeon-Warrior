@@ -4,13 +4,15 @@ from sprites import *
 
 class Room:
 
-    def __init__(self, game, bgimage, L, U, R, D):
+    def __init__(self, game, bgimage, L, U, R, D, name):
         self.background = pg.image.load(bgimage)
         self.game = game
         self.L = L
         self.U = U
         self.R = R
         self.D = D
+        self.name = name
+        self.room_creation()
 
     def get_background(self):
         return self.game.screen.blit(self.background, (0, 0))
