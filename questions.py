@@ -1,5 +1,36 @@
 from random import randint
-file = open('test_questions.txt', 'r')
+
+def add_question():
+    """
+    Takes in question from user and adds to txt file. This method should not be a part of the question class since the
+    questions need to be added to the txt file before creating an instance of the class.
+    :return: No return
+    """
+    file = open('test_questions.txt', 'w')
+
+    # makes counter so user inputs correct amount of answers
+    counter = 0
+    q_list = []
+    while counter < 5:
+        if counter == 0:
+            q = input('What question would you like to add?\n')
+            q_list.append(q)
+            counter += 1
+        elif counter == 1:
+            a = input('What is the actual answer to the question?\n')
+            q_list.append(a)
+            counter += 1
+        else:
+            option = input("What other options would you like to add? Try to trick yourself!\n")
+            q_list.append(option)
+            counter += 1
+    add_string = ', '.join(q_list)
+    file.write(add_string + '\n')
+    add_more = input('Would you like to add another question? Y/N\n')
+    if add_more.upper() == 'Y':
+        add_question()
+    else:
+        file.close()
 
 class Questions:
     """
@@ -10,6 +41,7 @@ class Questions:
         """
         Initializes list of questions and list for storing used questions.
         """
+        file = open('test_questions.txt', 'r')
         self._used_questions = []
         self._questions = []
         self._answer_keys = {
