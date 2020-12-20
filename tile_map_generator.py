@@ -72,7 +72,7 @@ def gen_line(line_num, level):
             out_str += ' ' * room_size
     return out_str
 
-file = open('dungeon.txt', 'w')
+file = open('dungeonw.txt', 'w')
 dung = dungeon.map[::-1]
 first_time = True
 for level in dung:
@@ -83,6 +83,14 @@ for level in dung:
                 file.write("\n")
             first_time = False
             file.write(gen_line(line_num, level))
+file.close()
+f1 = open('dungeonw.txt')
+f2 = open('dungeon.txt', 'w')
+tada = []
+for level in range(8*19):
+    tada.append(f1.readline())
+tada[:] = tada[::-1]
+f2.writelines(tada)
 
 
 
