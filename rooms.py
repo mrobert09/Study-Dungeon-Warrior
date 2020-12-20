@@ -28,3 +28,5 @@ class Room:
                     Wall(self.game, col, row)
                 if tile == "M":
                     self.game.monster1 = Monster(self.game, col, row, 'Images/monster.png')
+                if tile == "B":
+                    self.game.boss = Boss(self.game, col, row, 'Images/cthulhu.png')
