@@ -234,7 +234,8 @@ class Questions:
             'A' : 1,
             'B' : 2,
             'C' : 3,
-            'D' : 4
+            'D' : 4,
+            'E' : 5
         }
         self.mcbox = MultipleChoiceBox(WHITE, BLACK, 100, 70, 400, 420, screen, oswfont32) #coordinates to center MultipleChoiceBox on room
 
@@ -267,7 +268,7 @@ class Questions:
         choice1 = choices.pop(randint(0, len(choices) - 1))
         choice2 = choices.pop(randint(0, len(choices) - 1))
         choice3 = choices.pop(randint(0, len(choices) - 1))
-        choice4 = choices.pop()
+        choice4 = choices.pop(randint(0, len(choices) - 1))
 
         question_list = []
         self._single_question = question_list
@@ -278,6 +279,7 @@ class Questions:
         question_list.append(full_question[choice2])
         question_list.append(full_question[choice3])
         question_list.append(full_question[choice4])
+        question_list.append('POWER UP IS OVER 9000')
 
         #Prepare the multiple choice box with the appropriate text
         self.mcbox.set_read_text(question_list[0])
@@ -342,6 +344,9 @@ def ask_a_question():
                         answered = True
                         correct = True
                         return is_correct
+                    elif questions.mcbox.answer_clicked() == 'E':
+                        answered = True
+                        print('POWER UP OVER 9000')
                     else:
                         print("Wrong answer pressed")
                         answered = True
