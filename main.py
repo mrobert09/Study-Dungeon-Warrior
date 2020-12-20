@@ -25,7 +25,7 @@ class Game:
         self.clock = pg.time.Clock()  # used to set FPS later
 
     def load_map(self):
-        self.map = Map('dungeon.txt')
+        self.map = Map('map.txt')
 
     def new(self):
         # start a new game
