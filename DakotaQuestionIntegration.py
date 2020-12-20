@@ -356,24 +356,6 @@ def ask_a_question():
                         print("Wrong answer pressed")
                         answered = True
                         pygame.mixer.Sound.play(oof)
-                        #Tried to change button color when clikc on wrong button
-                        # if questions.mcbox.button_A.is_clicked_on() == True:
-                        #     print('test')
-                        #     questions.mcbox.button_A.set_color(RED)
-                        #     print('red')
-                        #     pygame.display.update()
-                        #     pygame.time.delay(500)
-                        #     questions.mcbox.button_A.set_color(questions.mcbox.button_A.original_color)
-                        #     pygame.display.update
-                        # # for button in questions.mcbox.buttons_list:
-                        # #     if button.is_clicked_on() == True:
-                        # #         print('test')
-                        # #         button.set_color(RED)
-                        # #         print('red')
-                        # #         pygame.display.update()
-                        # #         pygame.time.delay(500)
-                        # #         # button.set_color(button.original_color)
-                        # #         # pygame.display.update
                         return is_correct
                         
 

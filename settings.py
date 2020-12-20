@@ -24,3 +24,10 @@ GRIDHEIGHT = HEIGHT / TILESIZE
 
 # Player settings
 PLAYER_SPEED = 200
+
+#Sound Effects
+oof = pygame.mixer.Sound("Sounds/Oof.wav")
+hiyaa = pygame.mixer.Sound("Sounds/hiyaa.wav")
+
+#Fonts
+oswfont32 = pygame.font.Font("Fonts/Oswald-VariableFont_wght.ttf", 32)
