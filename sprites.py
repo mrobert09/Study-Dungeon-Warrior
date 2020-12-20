@@ -115,6 +115,22 @@ class Monster(pg.sprite.Sprite):
         self.rect.x = self.x * TILESIZE
         self.rect.y = self.y * TILESIZE
 
+class Boss(pg.sprite.Sprite):
+    """Monster sprite class that takes the game class, x coord, y coord,
+    and picture as arguments."""
+    def __init__(self, game, x, y, image):
+        self.groups = game.all_sprites, game.monsters
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.image = pg.image.load(image)
+        self.rect = self.image.get_rect()
+        self.x = x
+        self.y = y
+
+    def update(self):
+        self.rect.x = self.x * TILESIZE
+        self.rect.y = self.y * TILESIZE
+
 class Wall(pg.sprite.Sprite):
     def __init__(self, game, x, y):
         self.groups = game.all_sprites, game.walls
