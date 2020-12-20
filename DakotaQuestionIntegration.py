@@ -192,6 +192,10 @@ class MultipleChoiceBox:
         """Stores the correct response"""
         self.correct_response = response
 
+    def get_correct_response(self):
+        """Returns correct response"""
+        return self.correct_response
+
     def draw_read_text(self):
         """Draws the question text at the top of the MultipleChoiceBox"""
         text_boundary = pygame.Rect(self.x + 10, self.y + 10, self.width - 20, self.height)
@@ -224,6 +228,7 @@ class Questions:
         """
         file = open('test_questions.txt', 'r')
         self._used_questions = []
+        self._single_question = None
         self._questions = []
         self._answer_keys = {
             'A' : 1,
@@ -249,23 +254,23 @@ class Questions:
 
         # generates random integer as a list index
         full_question = self._questions[randint(0, len(self._questions) - 1)]
-        print(full_question)
-        # self.mcbox.set_correct_response(full_question[])
+        self.mcbox.set_correct_response(full_question[1])
 
         # returns random number from choices set. Needs to be random so correct answer isn't always A
-        choice1 = choices.pop(randint(1, len(choices))
-        choice2 = choices.pop(randint(1, len(choices))
-        choice3 = choices.pop(randint(1, len(choices))
-        choice4 = choices.pop(randint(1, len(choices))
+        choice1 = choices.pop(randint(0, len(choices) - 1))
+        choice2 = choices.pop(randint(0, len(choices) - 1))
+        choice3 = choices.pop(randint(0, len(choices) - 1))
+        choice4 = choices.pop()
 
         question_list = []
+        self._single_question = question_list
         # appends question and answers to the list to be used by later method
-        for item in full_question:
-            question_list.append(item)
-            question_list.append(item)
-            question_list.append(item)
-            question_list.append(item)
-            question_list.append(item)
+
+        question_list.append(full_question[0])
+        question_list.append(full_question[choice1])
+        question_list.append(full_question[choice2])
+        question_list.append(full_question[choice3])
+        question_list.append(full_question[choice4])
 
         #Prepare the multiple choice box with the appropriate text
         self.mcbox.set_read_text(question_list[0])
@@ -290,19 +295,9 @@ class Questions:
         # maps the user input to a list index to be used
         question_index = self._answer_keys[answer.upper()]
 
-        qtext = self.mcbox.get_read_text()
+        correct_answer = self.mcbox.get_correct_response()
 
-        # finds the question that was asked
-        for dictionary in self._questions:
-            if qtext in dictionary:
-                key_question = dictionary
-
-        correct_answer = key_question[qtext][0] == qtext[question_index]
-        if correct_answer:
-            for index, dictionary in enumerate(self._questions):
-                if key_question == dictionary:
-                    adder = self._questions.pop(index)
-                    self._used_questions.append(adder)
+        if correct_answer == self._single_question[question_index]:
             return True
         return False
 
