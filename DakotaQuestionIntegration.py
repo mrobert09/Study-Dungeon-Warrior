@@ -97,6 +97,7 @@ class MultipleChoiceBox:
         self.response_C = ''
         self.response_D = ''
         self.response_E = ''
+        self.correct_response = ''
         self.button_A = Button(BLACK, self.x + 10, self.y + 120, self.width -20, 50, "A", text = self.response_A, text_color = WHITE)
         self.button_B = Button(BLACK, self.x + 10, self.y + 180, self.width -20, 50, "B", text = self.response_B, text_color = WHITE)
         self.button_C = Button(BLACK, self.x + 10, self.y + 240, self.width -20, 50, "C", text = self.response_C, text_color = WHITE)
@@ -187,6 +188,10 @@ class MultipleChoiceBox:
         self.response_E = text
         self.button_E = Button(BLACK, self.x + 10, self.y + 360, self.width -20, 50, "E", text = self.response_E, text_color = WHITE)
 
+    def set_correct_response(self, response):
+        """Stores the correct response"""
+        self.correct_response = response
+
     def draw_read_text(self):
         """Draws the question text at the top of the MultipleChoiceBox"""
         text_boundary = pygame.Rect(self.x + 10, self.y + 10, self.width - 20, self.height)
@@ -232,8 +237,9 @@ class Questions:
             line = line.strip()
             storage_dict = {}
             item_list = line.split(', ')
-            storage_dict[item_list[0]] = item_list[1:]
-            self._questions.append(storage_dict)
+            self._questions.append(item_list)
+            # storage_dict[item_list[0]] = item_list[1:]
+            # self._questions.append(storage_dict)
 
     def generate_question(self):
         """
@@ -244,6 +250,8 @@ class Questions:
 
         # generates random integer as a list index
         full_question = self._questions[randint(0, len(self._questions) - 1)]
+        print(full_question)
+        # self.mcbox.set_correct_response(full_question[])
 
         # returns random number from choices set. Needs to be random so correct answer isn't always A
         choice1 = choices.pop(randint(0, len(choices) - 1))
