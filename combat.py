@@ -288,6 +288,17 @@ class Questions:
         """Draws question multiple choice box on screen"""
         self.mcbox.display_MultipleChoiceBox()
 
+    def get_questions_list(self):
+        """Returns the list of unused questions"""
+        return self._questions
+    
+    def recycle_questions(self):
+        """Once all questions have been used, recycle list of questions"""
+        if len(self._questions) == 0:
+            self._questions = self._used_questions
+            self._used_questions = []
+
+
     def answer_question(self, answer):
         """
         Gets the random question and uses helper method to print it out. Allows user to answer the question.
@@ -313,6 +324,7 @@ questions = Questions()
 
 def ask_a_question():
     """Generates and displays an interactive multiple choice question box"""
+    questions.recycle_questions()
     questions.generate_question()
     answered = False
     is_correct = False
