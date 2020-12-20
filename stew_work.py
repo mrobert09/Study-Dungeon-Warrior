@@ -135,6 +135,8 @@ class Dungeon():
     def add_adj_room(self, room, counter):
         """adds a room adjacent to the room passed if it can, returns True if it can
         returns False if it can't"""
+        if room[7] == 'Boss Room': #Stops the building of rooms adjacent to boss room
+            return False
         row = room[1]
         col = room[2]
         list_poss_rooms = []
