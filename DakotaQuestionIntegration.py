@@ -13,7 +13,7 @@ oswfont32 = pygame.font.Font("Fonts/Oswald-VariableFont_wght.ttf", 32)
 class Button:
     """Creation and methods for handling buttons"""
 
-    def __init__(self, color, x, y, width, height, text='', font = oswfont32, text_color = BLACK):
+    def __init__(self, color, x, y, width, height, label, text='', font = oswfont32, text_color = BLACK):
         """
         Initializes a button of 'color' color, with the upper left corner at x,y 
         width and height determine size of button
@@ -29,6 +29,7 @@ class Button:
         self.text = text
         self.font = font
         self.text_color = text_color
+        self.button_label = label
 
     def draw_button(self, surface):
         """Call this method to draw the button onto the given surface"""
@@ -38,13 +39,35 @@ class Button:
             text = self.font.render(self.text, True, self.text_color)
             surface.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
 
-    def mouse_hover_color(self, hover_color):
-        """Changes the color of the button when the mouse is hovering over it"""
+    
+    def is_hover(self):
+        """Returns boolean if mouse is over the button"""
         mouse_position = pygame.mouse.get_pos()
         if mouse_position[0] > self.x and mouse_position[0] < (self.x + self.width) and mouse_position[1] > self.y and mouse_position[1] < (self.y + self.height):
-                self.color = hover_color
+            return True
+        else:
+            return False
+
+    def mouse_hover_color(self, hover_color):
+        """Changes the color of the button when the mouse is hovering over it"""
+        if self.is_hover():
+            self.color = hover_color
         else:
             self.color = self.original_color
+
+    def is_displayed(self):
+        """"Stand in function, might change later"""
+        return True
+
+    def is_clicked_on(self):
+        """Checks if the button has been clicked on and returns boolean"""
+        if self.is_hover and pygame.MOUSEBUTTONDOWN and self.is_displayed():
+            return True
+        return False
+    
+    def get_label(self):
+        """returns the button's label (A, B, C, etc)"""
+        return self.button_label
 
 class MultipleChoiceBox:
     """Creates a MultipleChoiceBox object (add better docstring)"""
@@ -74,11 +97,11 @@ class MultipleChoiceBox:
         self.response_C = ''
         self.response_D = ''
         self.response_E = ''
-        self.button_A = Button(BLACK, self.x + 10, self.y + 120, self.width -20, height = 50, text = self.response_A, text_color = WHITE)
-        self.button_B = Button(BLACK, self.x + 10, self.y + 180, self.width -20, height = 50, text = self.response_B, text_color = WHITE)
-        self.button_C = Button(BLACK, self.x + 10, self.y + 240, self.width -20, height = 50, text = self.response_C, text_color = WHITE)
-        self.button_D = Button(BLACK, self.x + 10, self.y + 300, self.width -20, height = 50, text = self.response_D, text_color = WHITE)
-        self.button_E = Button(BLACK, self.x + 10, self.y + 360, self.width -20, height = 50, text = self.response_D, text_color = WHITE)
+        self.button_A = Button(BLACK, self.x + 10, self.y + 120, self.width -20, 50, "A", text = self.response_A, text_color = WHITE)
+        self.button_B = Button(BLACK, self.x + 10, self.y + 180, self.width -20, 50, "B", text = self.response_B, text_color = WHITE)
+        self.button_C = Button(BLACK, self.x + 10, self.y + 240, self.width -20, 50, "C", text = self.response_C, text_color = WHITE)
+        self.button_D = Button(BLACK, self.x + 10, self.y + 300, self.width -20, 50, "D", text = self.response_D, text_color = WHITE)
+        self.button_E = Button(BLACK, self.x + 10, self.y + 360, self.width -20, 50, "E", text = self.response_D, text_color = WHITE)
         self.buttons_list = [self.button_A, self.button_B, self.button_C, self.button_D, self.button_E]
 
     def draw_background(self):
@@ -135,30 +158,34 @@ class MultipleChoiceBox:
         """Sets the text which will be displayed at the top of the box"""
         self.read_text = text
 
+    def get_read_text(self):
+        """Returns the question text"""
+        return self.read_text
+
     def set_response_A(self, text):
         """Sets the text which will appear in button A"""
-        self.response_A = f'A) {text}'
-        self.button_A = Button(BLACK, self.x + 10, self.y + 120, self.width -20, 50, text = self.response_A, text_color = WHITE)
+        self.response_A = text
+        self.button_A = Button(BLACK, self.x + 10, self.y + 120, self.width -20, 50, "A", text = self.response_A, text_color = WHITE)
 
     def set_response_B(self, text):
         """Sets the text which will appear in button B"""
-        self.response_B = f'B) {text}'
-        self.button_B = Button(BLACK, self.x + 10, self.y + 180, self.width -20, 50, text = self.response_B, text_color = WHITE)
+        self.response_B = text
+        self.button_B = Button(BLACK, self.x + 10, self.y + 180, self.width -20, 50, "B", text = self.response_B, text_color = WHITE)
 
     def set_response_C(self, text):
         """Sets the text which will appear in button C"""
-        self.response_C = f'C) {text}'
-        self.button_C = Button(BLACK, self.x + 10, self.y + 240, self.width -20, 50, text = self.response_C, text_color = WHITE)
+        self.response_C = text
+        self.button_C = Button(BLACK, self.x + 10, self.y + 240, self.width -20, 50, "C", text = self.response_C, text_color = WHITE)
 
     def set_response_D(self, text):
         """Sets the text which will appear in button D"""
-        self.response_D = f'D) {text}'
-        self.button_D = Button(BLACK, self.x + 10, self.y + 300, self.width -20, 50, text = self.response_D, text_color = WHITE)
+        self.response_D = text
+        self.button_D = Button(BLACK, self.x + 10, self.y + 300, self.width -20, 50, "D", text = self.response_D, text_color = WHITE)
 
     def set_response_E(self, text):
         """Sets the text which will apper in button E"""
         self.response_E = text
-        self.button_E = Button(BLACK, self.x + 10, self.y + 360, self.width -20, 50, text = self.response_E, text_color = WHITE)
+        self.button_E = Button(BLACK, self.x + 10, self.y + 360, self.width -20, 50, "E", text = self.response_E, text_color = WHITE)
 
     def draw_read_text(self):
         """Draws the question text at the top of the MultipleChoiceBox"""
@@ -174,6 +201,12 @@ class MultipleChoiceBox:
         self.button_C.draw_button(screen)
         self.button_D.draw_button(screen)
         self.button_E.draw_button(screen)
+    
+    def answer_clicked(self):
+        for button in self.buttons_list:
+            if button.is_clicked_on():
+                return button.get_label()
+            return False
 
 class Questions:
     """
@@ -193,6 +226,7 @@ class Questions:
             'C' : 3,
             'D' : 4
         }
+        self.mcbox = MultipleChoiceBox(WHITE, BLACK, 100, 70, 400, 420, screen, oswfont32) #coordinates to center MultipleChoiceBox on room
 
         for line in file:
             line = line.strip()
@@ -226,46 +260,37 @@ class Questions:
             question_list.append(answer[choice3])
             question_list.append(answer[choice4])
 
-        return question_list
+        #Prepare the multiple choice box with the appropriate text
+        self.mcbox.set_read_text(question_list[0])
+        self.mcbox.set_response_A(question_list[1])
+        self.mcbox.set_response_B(question_list[2])
+        self.mcbox.set_response_C(question_list[3])
+        self.mcbox.set_response_D(question_list[4])
+        self.mcbox.set_response_E("Use a powerup")
 
-    def display_question(self, question):
+    def display_question(self):
         """Draws question multiple choice box on screen"""
-        question.display_MultipleChoiceBox()
+        self.mcbox.display_MultipleChoiceBox()
 
-    def answer_question(self):
+    def answer_question(self, answer):
         """
         Gets the random question and uses helper method to print it out. Allows user to answer the question.
         Determines if answer is correct or not. If answer is correct, question is removed from the list of questions
         that can be generated and added to a list of used questions.
         :return: boolean (whether the question was answered correctly or not)
         """
-        # generates the random question to use
-        question = self.generate_question()
-
-        #Prepares question as multiple choice display
-        mcbox = MultipleChoiceBox(WHITE, BLACK, 100, 70, 400, 420, screen, oswfont32) #coordinates to center MultipleChoiceBox on room 
-        mcbox.set_read_text(question[0])
-        mcbox.set_response_A(question[1])
-        mcbox.set_response_B(question[2])
-        mcbox.set_response_C(question[3])
-        mcbox.set_response_D(question[4])
-        mcbox.set_response_E("Use a powerup")
-
-        #display question
-        self.display_question(mcbox)
-
-        # gathers user input as answer to the question
-        user_answer = input('The answer is:\n')
 
         # maps the user input to a list index to be used
-        question_index = self._answer_keys[user_answer.upper()]
+        question_index = self._answer_keys[answer.upper()]
+
+        qtext = self.mcbox.get_read_text()
 
         # finds the question that was asked
         for dictionary in self._questions:
-            if question[0] in dictionary:
+            if qtext in dictionary:
                 key_question = dictionary
 
-        correct_answer = key_question[question[0]][0] == question[question_index]
+        correct_answer = key_question[qtext][0] == qtext[question_index]
         if correct_answer:
             for index, dictionary in enumerate(self._questions):
                 if key_question == dictionary:
@@ -275,25 +300,42 @@ class Questions:
         return False
 
 question = Questions()
+question.generate_question()
 
 # Game Loop
 running = True
+display_combat = False
 while running:
 
     screen.fill(WHITE)
-
-    question.answer_question()
-
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-        if event.type == pygame.MOUSEMOTION:
-            question.button_A.mouse_hover_color(LIGHTGREY)
-            question.button_B.mouse_hover_color(LIGHTGREY)
-            question.button_C.mouse_hover_color(LIGHTGREY)
-            question.button_D.mouse_hover_color(LIGHTGREY)
-            question.button_E.mouse_hover_color(LIGHTGREY)
+    display_combat = True
+    
+    while display_combat == True:
+
+        question.display_question()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                display_combat = False
+                running = False
+
+            if event.type == pygame.MOUSEMOTION:
+                question.mcbox.button_A.mouse_hover_color(LIGHTGREY)
+                question.mcbox.button_B.mouse_hover_color(LIGHTGREY)
+                question.mcbox.button_C.mouse_hover_color(LIGHTGREY)
+                question.mcbox.button_D.mouse_hover_color(LIGHTGREY)
+                question.mcbox.button_E.mouse_hover_color(LIGHTGREY)
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if question.mcbox.answer_clicked != False:
+                    print(question.mcbox.answer_clicked)
+                    question.answer_question(question.mcbox.answer_clicked())
+                
+        pygame.display.update()
     
     pygame.display.update()
