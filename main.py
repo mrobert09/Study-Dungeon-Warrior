@@ -14,6 +14,7 @@ class Game:
     def __init__(self):
         # initialize game window, etc
         self.running = True
+        create_dungeon(19, 14)
         self.load_map()
         # self.dungeon = Dungeon(14)
         pg.init()

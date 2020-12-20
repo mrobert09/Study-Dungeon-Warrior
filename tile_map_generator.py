@@ -3,13 +3,7 @@
 from stew_work import *
 
 
-
-dungeon = Dungeon(14)
-room_size = 19 #this is the number of lines that make up a room, also num of character across a room
-
-
-
-def gen_line(line_num, level):
+def gen_line(line_num, level, room_size):
     """Given a line_number of the current dungeon level returns the tile_map notation line
     at that line num as a string"""
     out_str = ''
@@ -72,26 +66,29 @@ def gen_line(line_num, level):
             out_str += ' ' * room_size
     return out_str
 
-file = open('dungeonw.txt', 'w')
-dung = dungeon.map[::-1]
-first_time = True
-for level in dung:
-    write_line = True
-    if write_line:
-        for line_num in range(room_size):
-            if not first_time:
-                file.write("\n")
-            first_time = False
-            file.write(gen_line(line_num, level))
-file.write('\n' + ("..................." * 8))
-file.close()
-f1 = open('dungeonw.txt')
-f2 = open('dungeon.txt', 'w')
-tada = []
-for level in range(8*19):
-    tada.append(f1.readline())
-tada[:] = tada[::-1]
-f2.writelines(tada)
+def create_dungeon(room_size, room_number):
+    dungeon = Dungeon(room_number)
+    # room_size = 19  # this is the number of lines that make up a room, also num of character across a room
+    file = open('dungeonw.txt', 'w')
+    dung = dungeon.map[::-1]
+    first_time = True
+    for level in dung:
+        write_line = True
+        if write_line:
+            for line_num in range(room_size):
+                if not first_time:
+                    file.write("\n")
+                first_time = False
+                file.write(gen_line(line_num, level, room_size))
+    file.write('\n' + ("..................." * 8))
+    file.close()
+    f1 = open('dungeonw.txt')
+    f2 = open('dungeon.txt', 'w')
+    tada = []
+    for level in range(8*19):
+        tada.append(f1.readline())
+    tada[:] = tada[::-1]
+    f2.writelines(tada)
 
 
 
