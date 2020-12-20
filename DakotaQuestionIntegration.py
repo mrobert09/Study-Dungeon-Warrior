@@ -245,6 +245,10 @@ class Questions:
             # storage_dict[item_list[0]] = item_list[1:]
             # self._questions.append(storage_dict)
 
+    def get_questions(self):
+        """Returns list of questions"""
+        return self._questions
+
     def generate_question(self):
         """
         Uses random module to generate a random question. Returns list with question at index 0 followed by 4 multiple choice answers
@@ -253,8 +257,11 @@ class Questions:
         choices = [1, 2, 3, 4]
 
         # generates random integer as a list index
-        full_question = self._questions[randint(0, len(self._questions) - 1)]
-        self.mcbox.set_correct_response(full_question[1])
+        if self._questions:
+            full_question = self._questions[randint(0, len(self._questions) - 1)]
+            self.mcbox.set_correct_response(full_question[1])
+        else:
+            print('NO MORE QUESTIONS')
 
         # returns random number from choices set. Needs to be random so correct answer isn't always A
         choice1 = choices.pop(randint(0, len(choices) - 1))
@@ -363,10 +370,10 @@ while running:
     display_combat = True
     correct_answer = 0
     while display_combat == True and correct_answer < 3:
-        if ask_a_question() == True:
-            correct_answer += 1
-    
-    if correct_answer == 3:
-        print("finished combat")
+        if questions.get_questions():
+            if ask_a_question() == True:
+                correct_answer += 1
+        else:
+            display_combat = False
     
     pygame.display.update()
