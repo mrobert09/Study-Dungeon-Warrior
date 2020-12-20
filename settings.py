@@ -1,3 +1,4 @@
+import pygame
 pygame.init()
 # colors (R, G, B)
 WHITE = (255, 255, 255)
@@ -8,6 +9,7 @@ GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
+BROWN = (51, 17, 0)
 
 # game settings
 # WIDTH = 1024  # divisible by 16, 32, and 64

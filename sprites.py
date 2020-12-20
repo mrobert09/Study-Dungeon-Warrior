@@ -1,5 +1,7 @@
 import pygame as pg
 from settings import *
+from combat import ask_a_question
+
 
 class Player(pg.sprite.Sprite):
     """Player sprite class that takes the game class, x coord, y coord,
@@ -45,7 +47,7 @@ class Player(pg.sprite.Sprite):
             hits = pg.sprite.spritecollide(self, sprite_group, kill_var)
             if hits:
                 if sprite_group == self.game.monsters:
-                    print("MONSTER COLLIDE.")
+                    ask_a_question()
                 # aligns the side of player sprite with side of wall
                 if self.vx > 0:
                     self.x = hits[0].rect.left - self.rect.width
@@ -58,7 +60,7 @@ class Player(pg.sprite.Sprite):
             hits = pg.sprite.spritecollide(self, sprite_group, kill_var)
             if hits:
                 if sprite_group == self.game.monsters:
-                    print("MONSTER COLLIDE.")
+                    ask_a_question()
                 # aligns the top / bottom of player sprite with bottom / top of wall
                 if self.vy > 0:
                     self.y = hits[0].rect.top - self.rect.height
@@ -119,7 +121,7 @@ class Wall(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.image = pg.Surface((TILESIZE, TILESIZE))
-        self.image.fill(GREEN)
+        self.image.fill(BROWN)
         self.rect = self.image.get_rect()
         self.x = x
         self.y = y
