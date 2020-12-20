@@ -235,7 +235,6 @@ class Questions:
 
         for line in file:
             line = line.strip()
-            storage_dict = {}
             item_list = line.split(', ')
             self._questions.append(item_list)
             # storage_dict[item_list[0]] = item_list[1:]
@@ -246,7 +245,7 @@ class Questions:
         Uses random module to generate a random question. Returns list with question at index 0 followed by 4 multiple choice answers
         """
         # set of possible choices to be used as list indices
-        choices = [0, 1, 2, 3]
+        choices = [1, 2, 3, 4]
 
         # generates random integer as a list index
         full_question = self._questions[randint(0, len(self._questions) - 1)]
@@ -254,19 +253,19 @@ class Questions:
         # self.mcbox.set_correct_response(full_question[])
 
         # returns random number from choices set. Needs to be random so correct answer isn't always A
-        choice1 = choices.pop(randint(0, len(choices) - 1))
-        choice2 = choices.pop(randint(0, len(choices) - 1))
-        choice3 = choices.pop(randint(0, len(choices) - 1))
-        choice4 = choices.pop(randint(0, len(choices) - 1))
+        choice1 = choices.pop(randint(1, len(choices))
+        choice2 = choices.pop(randint(1, len(choices))
+        choice3 = choices.pop(randint(1, len(choices))
+        choice4 = choices.pop(randint(1, len(choices))
 
         question_list = []
         # appends question and answers to the list to be used by later method
-        for question, answer in full_question.items():
-            question_list.append(question)
-            question_list.append(answer[choice1])
-            question_list.append(answer[choice2])
-            question_list.append(answer[choice3])
-            question_list.append(answer[choice4])
+        for item in full_question:
+            question_list.append(item)
+            question_list.append(item)
+            question_list.append(item)
+            question_list.append(item)
+            question_list.append(item)
 
         #Prepare the multiple choice box with the appropriate text
         self.mcbox.set_read_text(question_list[0])
