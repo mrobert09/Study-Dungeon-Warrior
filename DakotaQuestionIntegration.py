@@ -298,7 +298,11 @@ class Questions:
         correct_answer = self.mcbox.get_correct_response()
 
         if correct_answer == self._single_question[question_index]:
-            return True
+            for index, question in enumerate(self._questions):
+                if question[0] == self._single_question[0]:
+                    remove_q = self._questions.pop(index)
+                    self._used_questions.append(remove_q)
+                    return True
         return False
 
 questions = Questions()
