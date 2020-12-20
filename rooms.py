@@ -20,13 +20,13 @@ class Room:
         self.game.monsters = pg.sprite.Group()
         self.create_walls()
 
-        self.game.monster1 = Monster(self.game, 8, 1, 'Images/monster.png')
-
     def create_walls(self):
         for row, tiles in enumerate(self.game.map.map_data):
             for col, tile in enumerate(tiles):
                 if tile == "1":
                     Wall(self.game, col, row)
+                if tile == "M":
+                    self.game.monster1 = Monster(self.game, col, row, 'Images/monster.png')
         # if self.L:
         #     for y in range(0, 8):
         #         Wall(self.game, 0, y)

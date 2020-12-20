@@ -5,7 +5,7 @@ from sprites import *
 from rooms import *
 from stew_work import *
 from tilemap import *
-
+from tile_map_generator import *
 
 
 
@@ -25,7 +25,7 @@ class Game:
         self.clock = pg.time.Clock()  # used to set FPS later
 
     def load_map(self):
-        self.map = Map('map.txt')
+        self.map = Map('dungeon.txt')
 
     def new(self):
         # start a new game
