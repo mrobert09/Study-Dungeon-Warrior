@@ -61,11 +61,11 @@ class Dungeon():
         """initializes empty dungeon"""
         self.depth = depth #distance to boss room
         self.map = self._make_board()
-        print(self.map)
+        # print(self.map)
         self.start_room = (0,0)
         self.make_rooms(num_rooms)
-        for num in range(1, self.depth+1):
-            print(self.map[-num])
+        # for num in range(1, self.depth+1):
+        #     print(self.map[-num])
 
     def _make_board(self):
         """returns an A by A size list where A is the size of the game board
@@ -149,7 +149,7 @@ class Dungeon():
         if row-1 >= 0 and not self.map[row-1][col]:
             list_poss_rooms.append(4)
         if len(list_poss_rooms) == 0:
-            print("cant build from here", row, col)
+            # print("cant build from here", row, col)
             return False
         else:
             pick_dir = rand.randint(0,(len(list_poss_rooms)-1))
@@ -157,13 +157,13 @@ class Dungeon():
             room[direction+2] = 1
             if direction % 2 == 0:
                 row = row - (direction-3)
-                print("building",row,col)
+                # print("building",row,col)
                 self.map[row][col] = [True, row, col,0,0,0,0,("Room " + str(self.depth + counter))]
                 self.map[row][col][((direction+1)%4)+3] = 1
                 return True
             else:
                 col = col + (direction - 2)
-                print('buildin',row,col)
+                # print('buildin',row,col)
                 self.map[row][col] = [True, row, col,0,0,0,0,("Room " + str(self.depth + counter))]
                 self.map[row][col][((direction+1)%4)+3] = 1
                 return True

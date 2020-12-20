@@ -48,6 +48,9 @@ class Player(pg.sprite.Sprite):
             if hits:
                 if sprite_group == self.game.monsters:
                     ask_a_question()
+                if sprite_group == self.game.bosses:
+                    print("Boss collision!")
+                    ask_a_question()
                 # aligns the side of player sprite with side of wall
                 if self.vx > 0:
                     self.x = hits[0].rect.left - self.rect.width
@@ -60,6 +63,9 @@ class Player(pg.sprite.Sprite):
             hits = pg.sprite.spritecollide(self, sprite_group, kill_var)
             if hits:
                 if sprite_group == self.game.monsters:
+                    ask_a_question()
+                if sprite_group == self.game.bosses:
+                    print("Boss collision!")
                     ask_a_question()
                 # aligns the top / bottom of player sprite with bottom / top of wall
                 if self.vy > 0:
@@ -94,9 +100,11 @@ class Player(pg.sprite.Sprite):
         self.rect.x = self.x
         self.collision_check('x', self.game.walls, False)
         self.collision_check('x', self.game.monsters, True)
+        self.collision_check('x', self.game.bosses, True)
         self.rect.y = self.y
         self.collision_check('y', self.game.walls, False)
         self.collision_check('y', self.game.monsters, True)
+        self.collision_check('y', self.game.bosses, True)
 
 
 class Monster(pg.sprite.Sprite):
@@ -119,7 +127,7 @@ class Boss(pg.sprite.Sprite):
     """Monster sprite class that takes the game class, x coord, y coord,
     and picture as arguments."""
     def __init__(self, game, x, y, image):
-        self.groups = game.all_sprites, game.monsters
+        self.groups = game.all_sprites, game.bosses
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.image = pg.image.load(image)
