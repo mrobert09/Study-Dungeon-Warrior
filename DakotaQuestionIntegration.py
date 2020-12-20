@@ -335,7 +335,7 @@ while running:
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if question.mcbox.answer_clicked != False:
-                    print(question.mcbox.answer_clicked)
+                    print(question.mcbox.answer_clicked())
                     question.answer_question(question.mcbox.answer_clicked())
                 
         pygame.display.update()
