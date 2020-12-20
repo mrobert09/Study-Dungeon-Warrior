@@ -38,13 +38,12 @@ def title_screen():
     Displays the title of the game.
     :return:
     """
-    title1 = font.render('Study Dungeon', True, (0, 0, 0), (255, 255, 255))
+    title = font.render('Study Dungeon', True, (0, 0, 0), (255, 255, 255))
     while True:
         surface.fill((255, 255, 255))
-        rotated_title = pygame.transform.rotate(title1, 0)
-        rotated_rect = rotated_title.get_rect()
-        rotated_rect.center = (width / 2, height / 2)
-        surface.blit(rotated_title, rotated_rect)
+        rect = title.get_rect()
+        rect.center = (width / 2, height / 2)
+        surface.blit(title, rect)
 
         press_key_msg()
 
