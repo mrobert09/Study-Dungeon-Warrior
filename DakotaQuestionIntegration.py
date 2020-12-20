@@ -7,6 +7,10 @@ pygame.init()
 # Create Game Window (pixels x-axis, pixels y-axis)
 screen = pygame.display.set_mode((800, 600))
 
+#Load some sounds
+oof = pygame.mixer.Sound("Sounds/Oof.wav")
+hiyaa = pygame.mixer.Sound("Sounds/hiyaa.wav")
+
 #Text Stuff
 oswfont32 = pygame.font.Font("Fonts/Oswald-VariableFont_wght.ttf", 32)
 
@@ -55,9 +59,9 @@ class Button:
         else:
             self.color = self.original_color
 
-    # def is_displayed(self):
-    #     """"Stand in function, might change later"""
-    #     return True
+    def set_color(self, color):
+        """Change the color of the button"""
+        self.color = color
 
     def is_clicked_on(self):
         """Checks if the button has been clicked on and returns boolean"""
@@ -339,20 +343,34 @@ def ask_a_question():
                 if questions.mcbox.answer_clicked() != False:
                     if questions.answer_question(questions.mcbox.answer_clicked()) == True:
                         print("Correct answer pressed")
+                        pygame.mixer.Sound.play(hiyaa)
                         answered = True
                         correct = True
                         return is_correct
                     else:
                         print("Wrong answer pressed")
                         answered = True
+                        pygame.mixer.Sound.play(oof)
+                        #Tried to change button color when clikc on wrong button
+                        # if questions.mcbox.button_A.is_clicked_on() == True:
+                        #     print('test')
+                        #     questions.mcbox.button_A.set_color(RED)
+                        #     print('red')
+                        #     pygame.display.update()
+                        #     pygame.time.delay(500)
+                        #     questions.mcbox.button_A.set_color(questions.mcbox.button_A.original_color)
+                        #     pygame.display.update
+                        # # for button in questions.mcbox.buttons_list:
+                        # #     if button.is_clicked_on() == True:
+                        # #         print('test')
+                        # #         button.set_color(RED)
+                        # #         print('red')
+                        # #         pygame.display.update()
+                        # #         pygame.time.delay(500)
+                        # #         # button.set_color(button.original_color)
+                        # #         # pygame.display.update
                         return is_correct
                         
-        # if answered == True and correct == True:
-        #         questions.mcbox.button_A.mouse_hover_color(GREEN)
-        #         questions.mcbox.button_B.mouse_hover_color(GREEN)
-        #         questions.mcbox.button_C.mouse_hover_color(GREEN)
-        #         questions.mcbox.button_D.mouse_hover_color(GREEN)
-        #         questions.mcbox.button_E.mouse_hover_color(GREEN)
 
         pygame.display.update()
 
