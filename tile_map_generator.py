@@ -74,14 +74,14 @@ def gen_line(line_num, level):
 
 file = open('dungeon.txt', 'w')
 dung = dungeon.map[::-1]
+first_time = True
 for level in dung:
-    write_line = False
-    for check in level:
-        if check:
-            write_line = True
+    write_line = True
     if write_line:
         for line_num in range(room_size):
-            file.write("\n")
+            if not first_time:
+                file.write("\n")
+            first_time = False
             file.write(gen_line(line_num, level))
 
 
