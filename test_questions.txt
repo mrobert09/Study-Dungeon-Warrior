@@ -1,3 +1,14 @@
-hello, answer, wrong answer, wrong answer, wrong answer
-test question 2, answer, wrong, really?, who taught you?
-Who won the 2021 winter hackathon?, iRat, the competition, someoneelse, click on iRat
+What kind of bear is best?, its debatable, polar, panda, grizzly
+What is the best Star Wars movie?, Episode III, Episode I, Episode V, Episode IX
+What should the volume be set to?, 11, 0, 9, 10
+Who is the worst Game of Thrones character?, Ollie, Joffrey, Ramsey, Rhaegal
+Is iRAT the best team name in the Hackathon?, Yes, No, Plead the 5th, Potentially
+Where does the best pizza come from?, Alfredo's, Pizza by Alfredo, Domino's, Noone outpizzas the HUT
+How do you tell the age of a bear?, Check the tooth, ask it how old it is, avoid bears at all costs, seriously stay away from bears
+How many separate times have crabs been evolved by nature?, 5, 1, 3, 2
+Is Walmart or Harvard harder to get in to?, Walmart, Harvard, they're equal, they're both easy
+What is the atomic number of Helium?, 2, 3, 1, 1000
+What is the most reactive element?, Fluorine, Argon, Iron, Uranium
+What do acids donate?, a proton, a neutron, clothes to Goodwill, nothing (acids are greedy)
+Is this game awesome?, Yes, No, average at best, Kinda
+Did an iRAT member record the sound effects?, Yes, No, This is a 50/50 question, Don't pick this
