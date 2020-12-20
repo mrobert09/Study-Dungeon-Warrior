@@ -26,7 +26,7 @@ GRIDWIDTH = WIDTH / TILESIZE
 GRIDHEIGHT = HEIGHT / TILESIZE
 
 # Player settings
-PLAYER_SPEED = 200
+PLAYER_SPEED = 1000
 
 #Sound Effects
 oof = pygame.mixer.Sound("Sounds/Oof.wav")
