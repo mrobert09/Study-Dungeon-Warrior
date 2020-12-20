@@ -19,6 +19,7 @@ class Room:
     def room_creation(self):
         self.game.walls = pg.sprite.Group()
         self.game.monsters = pg.sprite.Group()
+        self.game.bosses = pg.sprite.Group()
         self.create_walls()
 
     def create_walls(self):

@@ -75,11 +75,12 @@ class Game:
         pg.display.flip()  # very important to make less intensive / slow
 
     def draw_grid(self):
+        pass
         """Temporary method used for drawing gridlines."""
-        for x in range(0, WIDTH, TILESIZE):
-            pg.draw.line(self.screen, LIGHTGREY, (x, 0), (x, HEIGHT))
-        for y in range(0, HEIGHT, TILESIZE):
-            pg.draw.line(self.screen, LIGHTGREY, (0, y), (WIDTH, y))
+        # for x in range(0, WIDTH, TILESIZE):
+        #     pg.draw.line(self.screen, LIGHTGREY, (x, 0), (x, HEIGHT))
+        # for y in range(0, HEIGHT, TILESIZE):
+        #     pg.draw.line(self.screen, LIGHTGREY, (0, y), (WIDTH, y))
 
     def show_start_screen(self):
         # game splash/start screen
