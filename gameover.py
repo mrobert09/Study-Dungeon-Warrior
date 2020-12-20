@@ -48,5 +48,7 @@ def game_over():
 
         if key_press_check():
             pygame.event.get()
-            return
+            break
         pygame.display.update()
+    
+    return True
