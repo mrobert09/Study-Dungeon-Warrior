@@ -83,7 +83,7 @@ class Dungeon():
         pick_num = rand.randint(0,self.depth-1)
         self.start_room = (0,pick_num)
         row = 0
-        col = pick_num
+        col = 0
         counter = 0
         previous_room_dir = False
         while counter < self.depth:
