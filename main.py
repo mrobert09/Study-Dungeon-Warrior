@@ -4,13 +4,18 @@ from settings import *
 from sprites import *
 from rooms import *
 from stew_work import *
+from tilemap import *
+
+
+
 
 
 class Game:
     def __init__(self):
         # initialize game window, etc
         self.running = True
-        self.dungeon = Dungeon(14)
+        self.load_map()
+        # self.dungeon = Dungeon(14)
         pg.init()
         pg.mixer.init()  # in case we want to add sound later
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -19,13 +24,17 @@ class Game:
         pg.display.set_icon(self.icon)
         self.clock = pg.time.Clock()  # used to set FPS later
 
+    def load_map(self):
+        self.map = Map('map.txt')
+
     def new(self):
         # start a new game
         self.all_sprites = pg.sprite.Group()
         self.room1 = Room(self, 'Images/BasicRoom.png', 1, 1, 1, 1)
         self.room1.room_creation()
         self.player = Player(self, 8, 14, 'Images/actor.png')
-        self.minimap = Minimap(self, 19, 0, self.dungeon)
+        # self.minimap = Minimap(self, 19, 0, self.dungeon)
+        self.camera = Camera(self.map.width, self.map.height)
         self.run()
 
     def run(self):
@@ -51,13 +60,18 @@ class Game:
     def update(self):
         # Game Loop - update
         self.all_sprites.update()  # passing dt to make movement speed not tied to frame rate, but time
+        self.camera.update(self.player)
 
     def draw(self):
         # Game Loop - draw
         # self.screen.blit(self.background, (0, 0))
+        if self.player.rect.x:
+            pass
         self.room1.get_background()
         self.draw_grid()
-        self.all_sprites.draw(self.screen)
+        # self.all_sprites.draw(self.screen)
+        for sprite in self.all_sprites:
+            self.screen.blit(sprite.image, self.camera.apply(sprite))
         # always do last after drawing everything
         pg.display.flip()  # very important to make less intensive / slow
 

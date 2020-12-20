@@ -23,35 +23,39 @@ class Room:
         self.game.monster1 = Monster(self.game, 8, 1, 'Images/monster.png')
 
     def create_walls(self):
-        if self.L:
-            for y in range(0, 8):
-                Wall(self.game, 0, y)
-            for y in range(10, 17):
-                Wall(self.game, 0, y)
-        elif not self.L:
-            for y in range(0, 17):
-                Wall(self.game, 0, y)
-        if self.U:
-            for x in range(0, 9):
-                Wall(self.game, x, 0)
-            for x in range(11, 19):
-                Wall(self.game, x, 0)
-        elif not self.U:
-            for x in range(0, 19):
-                Wall(self.game, x, 0)
-        if self.R:
-            for y in range(0, 8):
-                Wall(self.game, 18, y)
-            for y in range(10, 17):
-                Wall(self.game, 18, y)
-        elif not self.R:
-            for y in range(0, 17):
-                Wall(self.game, 18, y)
-        if self.D:
-            for x in range(0, 9):
-                Wall(self.game, x, 17)
-            for x in range(11, 19):
-                Wall(self.game, x, 17)
-        elif not self.D:
-            for x in range(0, 19):
-                Wall(self.game, x, 17)
+        for row, tiles in enumerate(self.game.map.map_data):
+            for col, tile in enumerate(tiles):
+                if tile == "1":
+                    Wall(self.game, col, row)
+        # if self.L:
+        #     for y in range(0, 8):
+        #         Wall(self.game, 0, y)
+        #     for y in range(10, 17):
+        #         Wall(self.game, 0, y)
+        # elif not self.L:
+        #     for y in range(0, 17):
+        #         Wall(self.game, 0, y)
+        # if self.U:
+        #     for x in range(0, 9):
+        #         Wall(self.game, x, 0)
+        #     for x in range(11, 19):
+        #         Wall(self.game, x, 0)
+        # elif not self.U:
+        #     for x in range(0, 19):
+        #         Wall(self.game, x, 0)
+        # if self.R:
+        #     for y in range(0, 8):
+        #         Wall(self.game, 18, y)
+        #     for y in range(10, 17):
+        #         Wall(self.game, 18, y)
+        # elif not self.R:
+        #     for y in range(0, 17):
+        #         Wall(self.game, 18, y)
+        # if self.D:
+        #     for x in range(0, 9):
+        #         Wall(self.game, x, 17)
+        #     for x in range(11, 19):
+        #         Wall(self.game, x, 17)
+        # elif not self.D:
+        #     for x in range(0, 19):
+        #         Wall(self.game, x, 17)

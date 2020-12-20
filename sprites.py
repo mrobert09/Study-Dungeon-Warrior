@@ -13,9 +13,11 @@ class Player(pg.sprite.Sprite):
         # defining x and y coordinate velocity, default 0
         self.vx, self.vy = 0, 0
         # sets the location of the sprite in pixels, but since we are using tiles we need to
-        # multiple by TILESIZE to get the appropriate coordinate in tiles
+        # multiply by TILESIZE to get the appropriate coordinate in tiles
         self.x = x * TILESIZE
         self.y = y * TILESIZE
+        self.drawshift_x = 0
+        self.drawshift_y = 0
 
     def get_keys(self):
         # assumes velocity is 0 on both axis unless key is pressed
@@ -64,6 +66,18 @@ class Player(pg.sprite.Sprite):
         return False
 
     def update(self):
+        if self.x > WIDTH - self.drawshift_x:
+            self.drawshift_x += -WIDTH
+            self.x = -self.drawshift_x
+        if self.x < -self.drawshift_x:
+            self.drawshift_x += WIDTH
+            self.x = WIDTH - self.drawshift_x
+        if self.y > HEIGHT - self.drawshift_y:
+            self.drawshift_y += -HEIGHT
+            self.y = -self.drawshift_y
+        if self.y < -self.drawshift_y:
+            self.drawshift_y += HEIGHT
+            self.y = HEIGHT - self.drawshift_y
         # method for determining velocity
         self.get_keys()
         # updates current position based on velocity * time
