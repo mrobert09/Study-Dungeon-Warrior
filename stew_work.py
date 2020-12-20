@@ -83,7 +83,7 @@ class Dungeon():
         pick_num = rand.randint(0,self.depth-1)
         self.start_room = (0,pick_num)
         row = 0
-        col = pick_num
+        col = 0
         counter = 0
         previous_room_dir = False
         while counter < self.depth:
@@ -135,6 +135,8 @@ class Dungeon():
     def add_adj_room(self, room, counter):
         """adds a room adjacent to the room passed if it can, returns True if it can
         returns False if it can't"""
+        if room[7] == 'Boss Room': #Stops the building of rooms adjacent to boss room
+            return False
         row = room[1]
         col = room[2]
         list_poss_rooms = []
