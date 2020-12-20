@@ -301,10 +301,38 @@ class Questions:
             return True
         return False
 
-question = Questions()
-def ask_a_question()
+questions = Questions()
 
-question.generate_question()
+def ask_a_question():
+    """Generates and displays an interactive multiple choice question box"""
+    questions.generate_question()
+    answered = False
+
+    while answered == False:
+        questions.display_question()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                display_combat = False
+                running = False
+
+            if event.type == pygame.MOUSEMOTION:
+                questions.mcbox.button_A.mouse_hover_color(LIGHTGREY)
+                questions.mcbox.button_B.mouse_hover_color(LIGHTGREY)
+                questions.mcbox.button_C.mouse_hover_color(LIGHTGREY)
+                questions.mcbox.button_D.mouse_hover_color(LIGHTGREY)
+                questions.mcbox.button_E.mouse_hover_color(LIGHTGREY)
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if questions.mcbox.answer_clicked() != False:
+                    if questions.answer_question(questions.mcbox.answer_clicked()) == True:
+                        print("Correct answer pressed")
+                        answered = True
+                    else:
+                        print("Wrong answer pressed")
+                        answered = True
+                        
+        pygame.display.update()
 
 # Game Loop
 running = True
@@ -320,28 +348,6 @@ while running:
     display_combat = True
     
     while display_combat == True:
-
-        question.display_question()
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                display_combat = False
-                running = False
-
-            if event.type == pygame.MOUSEMOTION:
-                question.mcbox.button_A.mouse_hover_color(LIGHTGREY)
-                question.mcbox.button_B.mouse_hover_color(LIGHTGREY)
-                question.mcbox.button_C.mouse_hover_color(LIGHTGREY)
-                question.mcbox.button_D.mouse_hover_color(LIGHTGREY)
-                question.mcbox.button_E.mouse_hover_color(LIGHTGREY)
-
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if question.mcbox.answer_clicked() != False:
-                    if question.answer_question(question.mcbox.answer_clicked()) == True:
-                        print("Correct answer pressed")
-                    else:
-                        print("Wrong answer pressed")
-                
-        pygame.display.update()
+        ask_a_question()
     
     pygame.display.update()
