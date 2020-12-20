@@ -83,6 +83,7 @@ for level in dung:
                 file.write("\n")
             first_time = False
             file.write(gen_line(line_num, level))
+file.write('\n' + ("..................." * 8))
 file.close()
 f1 = open('dungeonw.txt')
 f2 = open('dungeon.txt', 'w')
