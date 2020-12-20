@@ -302,6 +302,8 @@ class Questions:
         return False
 
 question = Questions()
+def ask_a_question()
+
 question.generate_question()
 
 # Game Loop
