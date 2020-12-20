@@ -307,6 +307,7 @@ def ask_a_question():
     """Generates and displays an interactive multiple choice question box"""
     questions.generate_question()
     answered = False
+    correct = False
 
     while answered == False:
         questions.display_question()
@@ -327,11 +328,19 @@ def ask_a_question():
                 if questions.mcbox.answer_clicked() != False:
                     if questions.answer_question(questions.mcbox.answer_clicked()) == True:
                         print("Correct answer pressed")
+                        correct = True
                         answered = True
                     else:
                         print("Wrong answer pressed")
                         answered = True
                         
+        # if answered == True and correct == True:
+        #         questions.mcbox.button_A.mouse_hover_color(GREEN)
+        #         questions.mcbox.button_B.mouse_hover_color(GREEN)
+        #         questions.mcbox.button_C.mouse_hover_color(GREEN)
+        #         questions.mcbox.button_D.mouse_hover_color(GREEN)
+        #         questions.mcbox.button_E.mouse_hover_color(GREEN)
+
         pygame.display.update()
 
 # Game Loop
