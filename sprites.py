@@ -37,13 +37,15 @@ class Player(pg.sprite.Sprite):
             self.vx *= 0.7071
             self.vy *= 0.7071
 
-    def collision_check(self, dir, sprite_group):
+    def collision_check(self, dir, sprite_group, kill_var):
         """Collision checking method. Takes axis (x or y) and sprite group as arguments."""
         if dir == "x":
             # spritecollide has 3 arguments: self, the sprite group you are checking, and
             # True or False depending if you want the object to disappear when you collide
-            hits = pg.sprite.spritecollide(self, sprite_group, False)
+            hits = pg.sprite.spritecollide(self, sprite_group, kill_var)
             if hits:
+                if sprite_group == self.game.monsters:
+                    print("MONSTER COLLIDE.")
                 # aligns the side of player sprite with side of wall
                 if self.vx > 0:
                     self.x = hits[0].rect.left - self.rect.width
@@ -53,8 +55,10 @@ class Player(pg.sprite.Sprite):
                 self.vx = 0
                 self.rect.x = self.x
         if dir == "y":
-            hits = pg.sprite.spritecollide(self, sprite_group, False)
+            hits = pg.sprite.spritecollide(self, sprite_group, kill_var)
             if hits:
+                if sprite_group == self.game.monsters:
+                    print("MONSTER COLLIDE.")
                 # aligns the top / bottom of player sprite with bottom / top of wall
                 if self.vy > 0:
                     self.y = hits[0].rect.top - self.rect.height
@@ -86,11 +90,11 @@ class Player(pg.sprite.Sprite):
         # collision detection must be done separately for x and y to allow for
         # sliding against a wall while also running into it
         self.rect.x = self.x
-        self.collision_check('x', self.game.walls)
-        self.collision_check('x', self.game.monsters)
+        self.collision_check('x', self.game.walls, False)
+        self.collision_check('x', self.game.monsters, True)
         self.rect.y = self.y
-        self.collision_check('y', self.game.walls)
-        self.collision_check('y', self.game.monsters)
+        self.collision_check('y', self.game.walls, False)
+        self.collision_check('y', self.game.monsters, True)
 
 
 class Monster(pg.sprite.Sprite):
