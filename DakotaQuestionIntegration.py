@@ -55,13 +55,13 @@ class Button:
         else:
             self.color = self.original_color
 
-    def is_displayed(self):
-        """"Stand in function, might change later"""
-        return True
+    # def is_displayed(self):
+    #     """"Stand in function, might change later"""
+    #     return True
 
     def is_clicked_on(self):
         """Checks if the button has been clicked on and returns boolean"""
-        if self.is_hover and pygame.MOUSEBUTTONDOWN and self.is_displayed():
+        if self.is_hover() == True:
             return True
         return False
     
@@ -213,9 +213,9 @@ class MultipleChoiceBox:
     
     def answer_clicked(self):
         for button in self.buttons_list:
-            if button.is_clicked_on():
-                return button.get_label()
-            return False
+            if button.is_clicked_on() == True:
+               return button.get_label()
+        return False
 
 class Questions:
     """
@@ -334,9 +334,11 @@ while running:
                 question.mcbox.button_E.mouse_hover_color(LIGHTGREY)
 
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if question.mcbox.answer_clicked != False:
-                    print(question.mcbox.answer_clicked())
-                    question.answer_question(question.mcbox.answer_clicked())
+                if question.mcbox.answer_clicked() != False:
+                    if question.answer_question(question.mcbox.answer_clicked()) == True:
+                        print("Correct answer pressed")
+                    else:
+                        print("Wrong answer pressed")
                 
         pygame.display.update()
     
