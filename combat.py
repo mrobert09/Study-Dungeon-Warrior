@@ -1,6 +1,7 @@
 import pygame
 from settings import *
 from random import randint
+from gameover import *
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -343,9 +344,9 @@ def ask_a_question():
                         answered = True
                         print('POWER UP OVER 9000')
                     else:
-                        print("Wrong answer pressed")
                         answered = True
                         pygame.mixer.Sound.play(oof)
+                        game_over()
                         return is_correct
                         
 
