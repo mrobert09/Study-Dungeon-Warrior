@@ -11,8 +11,8 @@ YELLOW = (255, 255, 0)
 # game settings
 # WIDTH = 1024  # divisible by 16, 32, and 64
 # HEIGHT = 768  # divisible by 16, 32, and 64
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 608
+HEIGHT = 608
 FPS = 60
 BGCOLOR = BLACK
 TITLE = "Study Dungeon Warrior"
