@@ -1,6 +1,7 @@
 import pygame
 from settings import *
 from random import randint
+from gameover import *
 # Initialize game
 pygame.init()
 
