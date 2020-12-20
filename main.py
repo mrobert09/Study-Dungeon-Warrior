@@ -6,9 +6,7 @@ from rooms import *
 from stew_work import *
 from tilemap import *
 from tile_map_generator import *
-
-
-
+from title_screen import *
 
 class Game:
     def __init__(self):
@@ -96,6 +94,8 @@ g = Game()
 g.show_start_screen()
 
 #Game Loop
+
 while g.running:
+    title_screen()
     g.new()
     g.show_go_screen()
