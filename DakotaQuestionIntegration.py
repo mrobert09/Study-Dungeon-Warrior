@@ -255,24 +255,24 @@ class Questions:
         self.display_question(mcbox)
 
         # gathers user input as answer to the question
-        user_answer = input('The answer is:\n')
+         # user_answer = input('The answer is:\n')
 
         # maps the user input to a list index to be used
-        question_index = self._answer_keys[user_answer.upper()]
+        # question_index = self._answer_keys[user_answer.upper()]
 
         # finds the question that was asked
-        for dictionary in self._questions:
-            if question[0] in dictionary:
-                key_question = dictionary
+        # for dictionary in self._questions:
+            # if question[0] in dictionary:
+                # key_question = dictionary
 
-        correct_answer = key_question[question[0]][0] == question[question_index]
-        if correct_answer:
-            for index, dictionary in enumerate(self._questions):
-                if key_question == dictionary:
-                    adder = self._questions.pop(index)
-                    self._used_questions.append(adder)
-            return True
-        return False
+        # correct_answer = key_question[question[0]][0] == question[question_index]
+        # if correct_answer:
+            # for index, dictionary in enumerate(self._questions):
+                # if key_question == dictionary:
+                    # adder = self._questions.pop(index)
+                    # self._used_questions.append(adder)
+           # return True
+        #return False
 
 question = Questions()
 
@@ -295,5 +295,7 @@ while running:
             question.button_C.mouse_hover_color(LIGHTGREY)
             question.button_D.mouse_hover_color(LIGHTGREY)
             question.button_E.mouse_hover_color(LIGHTGREY)
+
+
     
     pygame.display.update()
