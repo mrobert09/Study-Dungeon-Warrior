@@ -4,7 +4,6 @@ pygame.init()
 width = 600
 height = 600
 surface = pygame.display.set_mode((width, height))
-
 font = pygame.font.Font("Fonts/Oswald-VariableFont_wght.ttf", 24)
 
 def press_key_msg():
@@ -51,12 +50,3 @@ def title_screen():
             pygame.event.get()
             return
         pygame.display.update()
-
-
-
-
-title_screen()
-
-
-
-
