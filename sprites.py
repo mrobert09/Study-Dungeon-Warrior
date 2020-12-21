@@ -47,12 +47,16 @@ class Player(pg.sprite.Sprite):
             hits = pg.sprite.spritecollide(self, sprite_group, kill_var)
             if hits:
                 if sprite_group == self.game.monsters:
+                    pygame.mixer.Sound.play(monsterohsnap)
                     ask_a_question()
                 if sprite_group == self.game.bosses:
+                    pygame.mixer.Sound.play(bosstentacles)
                     print("Boss collision!")
                     ask_a_question()
+                    pygame.mixer.Sound.play(bossdead)
                 # aligns the side of player sprite with side of wall
                 if self.vx > 0:
+                    # pygame.mixer.Sound.play(wall)
                     self.x = hits[0].rect.left - self.rect.width
                 if self.vx < 0:
                     self.x = hits[0].rect.right
@@ -63,10 +67,13 @@ class Player(pg.sprite.Sprite):
             hits = pg.sprite.spritecollide(self, sprite_group, kill_var)
             if hits:
                 if sprite_group == self.game.monsters:
+                    pygame.mixer.Sound.play(ohnomonster)
                     ask_a_question()
                 if sprite_group == self.game.bosses:
+                    pygame.mixer.Sound.play(bosstentacles)
                     print("Boss collision!")
                     ask_a_question()
+                    pygame.mixer.Sound.play(bossdead)
                 # aligns the top / bottom of player sprite with bottom / top of wall
                 if self.vy > 0:
                     self.y = hits[0].rect.top - self.rect.height

@@ -348,6 +348,11 @@ def ask_a_question():
                 if questions.mcbox.answer_clicked() != False:
                     if questions.answer_question(questions.mcbox.answer_clicked()) == True:
                         print("Correct answer pressed")
+                        sound = randint(1, 2)
+                        if sound == 1:
+                            pygame.mixer.Sound.play(hiyaa)
+                        elif sound == 2:
+                            pygame.mixer.Sound.play(getgood)
                         pygame.mixer.Sound.play(hiyaa)
                         answered = True
                         correct = True
@@ -359,6 +364,8 @@ def ask_a_question():
                         answered = True
                         pygame.mixer.Sound.play(oof)
                         game_over()
+                        pygame.mixer.Sound.play(bebetter)
+
                         return is_correct
                         
 
