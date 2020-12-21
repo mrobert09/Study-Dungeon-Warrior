@@ -1,4 +1,4 @@
-# BeaverHacks_Winter2020
+# BeaverHacks_Winter2021
 
 Contributors:
 Steven Cannon,
@@ -6,11 +6,11 @@ Stew Towle,
 Dakota Junkman,
 Matthew Roberts,
 
-This is a repository for the 2020 Winter Hackathon hosted at Oregon State University.
+This is a repository for STUDY DUNGEON WARRIOR, a game made for the 2021 Winter Hackathon hosted at Oregon State University.
 
-Working on code.
+To give the game a try you'll need Python, pygame, and the files included in this repository. To play, run main.py
 
-This is Matt's change. Change #2.
+
 
 Window icon made by Freepik from www.flaticon.com
 Monster sprite made by Smashicons from www.flaticon.com
