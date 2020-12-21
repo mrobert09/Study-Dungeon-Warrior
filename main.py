@@ -23,6 +23,9 @@ class Game:
         pg.display.set_icon(self.icon)
         self.clock = pg.time.Clock()  # used to set FPS later
 
+        pygame.mixer.music.load('Sounds/backgroundmusic.wav')
+        pygame.mixer.music.play(-1)
+
     def load_map(self):
         self.map = Map('dungeon.txt')
 

@@ -31,6 +31,14 @@ PLAYER_SPEED = 1000
 #Sound Effects
 oof = pygame.mixer.Sound("Sounds/Oof.wav")
 hiyaa = pygame.mixer.Sound("Sounds/hiyaa.wav")
+bebetter = pygame.mixer.Sound("Sounds/bebetter.wav")
+bossdead = pygame.mixer.Sound("Sounds/bossdead.wav")
+bosstentacles = = pygame.mixer.Sound("Sounds/bosstentacles.wav")
+door = pygame.mixer.Sound("Sounds/door.wav")
+getgood = pygame.mixer.Sound("Sounds/getgood.wav")
+monsterohsnap = pygame.mixer.Sound("Sounds/monsterohsnap.wav")
+ohnomonster = pygame.mixer.Sound("Sounds/ohnomonster.wav")
+wall = pygame.mixer.Sound("Sounds/wall.wav")
 
 #Fonts
 oswfont32 = pygame.font.Font("Fonts/Oswald-VariableFont_wght.ttf", 32)
