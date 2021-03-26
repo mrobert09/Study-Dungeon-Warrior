@@ -1,18 +1,31 @@
-# BeaverHacks_Winter2021
+# Study Dungeon Warrior
 
-Contributors:
-Steven Cannon,
-Stew Towle,
-Dakota Junkman,
-Matthew Roberts,
+## Contributors
+- Steven Cannon (cannon-steven)
+- Dakota Junkman (dakotajunkman)
+- Matthew Roberts (Robertsm8)
+- Stewart Towle (towles-osu)
 
-This is a repository for STUDY DUNGEON WARRIOR, a game made for the 2021 Winter Hackathon hosted at Oregon State University.
+## Technologies Used
+- Python 3.8
+- PyGame Module
 
-To give the game a try you'll need Python, pygame, and the files included in this repository. To play, run main.py
+## Game Overview
+This game was created for Beaver Hacks Winter 2021 at Oregon State University. The theme was education. Inspired by 
+Zelda and similar dungeon games, our group decided to build a dungeon game. In our game, the dungeon is procedurally 
+generated and different upon each initialization. The character navigates through the dungeon and encounters monsters. 
+In order to defeat the monster, the character must answer a question correctly. The game provides sound effects to 
+notify the player whether the question was answered correctly or not. 
+
+## Illustrations
+Navigating the character through the rooms of the dungeon. <br/><br/>
+![](./gifs/character-nav.gif)
+
+Answering a question. <br/><br/>
+![](./gifs/answer-question.gif)
 
 
 
-Window icon made by Freepik from www.flaticon.com
-Monster sprite made by Smashicons from www.flaticon.com
+Window icon made by Freepik from www.flaticon.com  
+Monster sprite made by Smashicons from www.flaticon.com  
 Boss sprite made by Smashicons from www.flaticon.com
-
