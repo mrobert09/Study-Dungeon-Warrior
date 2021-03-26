@@ -3,7 +3,7 @@
 ## Contributors
 - Steven Cannon (cannon-steven)
 - Dakota Junkman (dakotajunkman)
-- Matthew Roberts (Robertsm8)
+- Matthew Roberts (Robertsm8 / mrobert09)
 - Stewart Towle (towles-osu)
 
 ## Technologies Used
@@ -16,6 +16,9 @@ Zelda and similar dungeon games, our group decided to build a dungeon game. In o
 generated and different upon each initialization. The character navigates through the dungeon and encounters monsters. 
 In order to defeat the monster, the character must answer a question correctly. The game provides sound effects to 
 notify the player whether the question was answered correctly or not. 
+
+## Awards
+The project submitted won first place in the hackathon out of over a dozen entries.
 
 ## Illustrations
 Navigating the character through the rooms of the dungeon. <br/><br/>
